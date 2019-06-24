@@ -1,4 +1,4 @@
-# Mixing For MonoDepth
+# Mixing Datasets For MonoDepth
 
 This code allows to compute a depth map based on a single input image. It runs a neural network that was trained by mixing several datasets as described in
 
