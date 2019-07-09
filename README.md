@@ -5,7 +5,7 @@ This repository contains code to compute depth from a single image. It accompani
 >Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer  
 Katrin Lasinger, Rene Ranftl,  Konrad Schindler, Vladlen Koltun
 
-The pre-trained model corresponds to ``RW+MD+MV`` with ``MGDA`` enabled and movies sampled at 4 frames per second.
+The pre-trained model corresponds to `RW+MD+MV` with `MGDA` enabled and movies sampled at 4 frames per second.
 
 ### Setup 
 
@@ -18,7 +18,7 @@ file in the root folder.
     conda install pytorch torchvision opencv
     ```
 
-   The code was tested with Python 3.7, PyTorch 1.0.1, and OpenCV 3.4.2:
+   The code was tested with Python 3.7, PyTorch 1.0.1, and OpenCV 3.4.2.
 
     
 ### Usage
