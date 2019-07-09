@@ -1,29 +1,52 @@
-# Mixing Datasets For MonoDepth
+# Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer
 
-This code allows to compute a depth map based on a single input image. It runs a neural network that was trained by mixing several datasets as described in
+This repository contains code accompanying our [paper](https://arxiv.org/abs/1907.01341):
 
->Mixing Datasets for Single-Image Depth Estimation in Diverse Environments.  
-Rene Ranftl, Katrin Lasinger, Vladlen Koltun
+>Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer  
+Katrin Lasinger, Rene Ranftl,  Konrad Schindler, Vladlen Koltun
 
-## Setup
+The pre-trained model corresponds to ``RW+MD+MV`` with MGDA and movies sampled at 4 fps.
 
-1) Download the model weights [model.pt](https://drive.google.com/open?id=1Q9q7dVFhXiNOS1djOlaUUmnJlKMenEoU) and put the file in the same folder as this README.
+## Setup 
 
-2) Create and activate conda environment:
+1) Download the model weights [model.pt](https://drive.google.com/open?id=1Q9q7dVFhXiNOS1djOlaUUmnJlKMenEoU) and place the
+file in the root folder.
+
+2) Setup dependencies: 
 
     ```shell
-    conda env create -f environment.yml
-    conda activate mixingDatasetsForMonoDepth
+    conda install pytorch torchvision opencv
     ```
 
+   The code was tested with Python 3.7, PyTorch 1.0.1, and OpenCV 3.4.2:
+
+    
 ## Usage
 
-1) Put one or more input images for monocular depth estimation in the folder `input`.
+1) Place one or more input images in the folder `input`.
 
-2) Produce depth maps for the images in the `input` folder as follows:
+2) Run the model:
 
     ```shell
     python run.py
     ```
 
 3) The resulting depth maps are written to the `output` folder.
+
+
+## Citation
+
+Please cite our paper if you use this code for your research:
+```
+@article{Lasinger2019,
+	author    = {Katrin Lasinger and Ren\'{e} Ranftl and Konrad Schindler and Vladlen Koltun},
+	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer},
+	journal   = {arXiv:1907.01341},
+	year      = {2019},
+}
+```
+
+
+## License 
+
+MIT License 

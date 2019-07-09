@@ -15,11 +15,11 @@ def run(input_path, output_path, model_path):
         output_path (str): path to output folder
         model_path (str): path to saved model
     """
-    print('initialize')
+    print("initialize")
 
     # select device
-    device = torch.device('cpu')
-    print('device: %s' % device)
+    device = torch.device("cpu")
+    print("device: %s" % device)
 
     # load network
     model = MonoDepthNet(model_path)
@@ -27,7 +27,7 @@ def run(input_path, output_path, model_path):
     model.eval()
 
     # get input
-    img_names = glob.glob(os.path.join(input_path, '*'))
+    img_names = glob.glob(os.path.join(input_path, "*"))
     num_images = len(img_names)
 
     # create output folder
@@ -41,6 +41,7 @@ def run(input_path, output_path, model_path):
 
         # input
         img = utils.read_image(img_name)
+
         img_input = utils.resize_image(img)
         img_input = img_input.to(device)
 
@@ -51,13 +52,15 @@ def run(input_path, output_path, model_path):
         depth = utils.resize_depth(out, img.shape[1], img.shape[0])
 
         # output
-        filename = os.path.join(output_path, os.path.splitext(os.path.basename(img_name))[0])
+        filename = os.path.join(
+            output_path, os.path.splitext(os.path.basename(img_name))[0]
+        )
         utils.write_depth(filename, depth)
 
     print("finished")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # set paths
     INPUT_PATH = "input"
     OUTPUT_PATH = "output"
