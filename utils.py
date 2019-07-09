@@ -107,7 +107,6 @@ def read_image(path):
     img = cv2.imread(path)
 
     if img.ndim == 2:
-        print("We've got a grayvalue image")
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
 
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) / 255.0
