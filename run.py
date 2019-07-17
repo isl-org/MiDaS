@@ -55,7 +55,7 @@ def run(input_path, output_path, model_path):
         filename = os.path.join(
             output_path, os.path.splitext(os.path.basename(img_name))[0]
         )
-        utils.write_depth(filename, depth)
+        utils.write_depth(filename, depth, bits=2)
 
     print("finished")
 
