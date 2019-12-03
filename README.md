@@ -1,11 +1,15 @@
-## Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer
+## Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer
 
 This repository contains code to compute depth from a single image. It accompanies our [paper](https://arxiv.org/abs/1907.01341):
 
->Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer  
-Katrin Lasinger, Rene Ranftl,  Konrad Schindler, Vladlen Koltun
+>Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer  
+René Ranftl, Katrin Lasinger, Konrad Schindler, Vladlen Koltun
 
-The pre-trained model corresponds to `RW+MD+MV` with `MGDA` enabled and movies sampled at 4 frames per second.
+The pre-trained model corresponds to `DS 4` with multi-objective optimization enabled.
+
+### Changelog 
+* **[Dec 2019] Released new version of MiDaS - the new model is more accurate and robust**
+* [Jul 2019] Initial release of MiDaS
 
 ### Setup 
 
@@ -18,7 +22,7 @@ file in the root folder.
     conda install pytorch torchvision opencv
     ```
 
-   The code was tested with Python 3.7, PyTorch 1.0.1, and OpenCV 3.4.2.
+   The code was tested with Python 3.7, PyTorch 1.2.0, and OpenCV 3.4.2.
 
     
 ### Usage
@@ -31,17 +35,17 @@ file in the root folder.
     python run.py
     ```
 
-3) The resulting depth maps are written to the `output` folder.
+3) The resulting inverse depth maps are written to the `output` folder.
 
 
 ### Citation
 
-Please cite our paper if you use this code in your research:
+Please cite our paper if you use this code:
 ```
 @article{Lasinger2019,
-	author    = {Katrin Lasinger and Ren\'{e} Ranftl and Konrad Schindler and Vladlen Koltun},
+	author    = {Ren\'{e} Ranftl and Katrin Lasinger and Konrad Schindler and Vladlen Koltun},
 	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for 
-        Zero-Shot Cross-Dataset Transfer},
+        Zero-shot Cross-dataset Transfer},
 	journal   = {arXiv:1907.01341},
 	year      = {2019},
 }
