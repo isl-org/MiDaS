@@ -3,12 +3,12 @@
 This repository contains code to compute depth from a single image. It accompanies our [paper](https://arxiv.org/abs/1907.01341):
 
 >Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer  
-René Ranftl, Katrin Lasinger, Konrad Schindler, Vladlen Koltun
+René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, Vladlen Koltun
 
 The pre-trained model corresponds to `DS 4` with multi-objective optimization enabled.
 
 ### Changelog 
-* **[Dec 2019] Released new version of MiDaS - the new model is more accurate and robust**
+* **[Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust**
 * [Jul 2019] Initial release of MiDaS
 
 ### Setup 
@@ -42,8 +42,8 @@ file in the root folder.
 
 Please cite our paper if you use this code:
 ```
-@article{Lasinger2019,
-	author    = {Ren\'{e} Ranftl and Katrin Lasinger and Konrad Schindler and Vladlen Koltun},
+@article{Ranftl2019,
+	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
 	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for 
         Zero-shot Cross-dataset Transfer},
 	journal   = {arXiv:1907.01341},
