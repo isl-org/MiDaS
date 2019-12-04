@@ -16,7 +16,7 @@ The pre-trained model corresponds to `DS 4` with multi-objective optimization en
 1) Download the model weights [model.pt](https://drive.google.com/file/d/1nqW_Hwj86kslfsXR7EnXpEWdO2csz1cC) and place the
 file in the root folder.
 
-2) Setup dependencies: 
+2) Set up dependencies: 
 
     ```shell
     conda install pytorch torchvision opencv
@@ -40,12 +40,11 @@ file in the root folder.
 
 ### Citation
 
-Please cite our paper if you use this code:
+Please cite our paper if you use this code or any of the models:
 ```
 @article{Ranftl2019,
 	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
-	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for 
-        Zero-shot Cross-dataset Transfer},
+	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer},
 	journal   = {arXiv:1907.01341},
 	year      = {2019},
 }
