@@ -13,7 +13,7 @@ The pre-trained model corresponds to `DS 4` with multi-objective optimization en
 
 ### Setup 
 
-1) Download the model weights [model.pt](https://drive.google.com/open?id=1Q9q7dVFhXiNOS1djOlaUUmnJlKMenEoU) and place the
+1) Download the model weights [model.pt](https://drive.google.com/file/d/1nqW_Hwj86kslfsXR7EnXpEWdO2csz1cC) and place the
 file in the root folder.
 
 2) Setup dependencies: 
