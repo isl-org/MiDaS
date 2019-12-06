@@ -9,7 +9,7 @@ The pre-trained model corresponds to `DS 4` with multi-objective optimization en
 
 ### Changelog 
 * **[Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust**
-* [Jul 2019] Initial release of MiDaS
+* [Jul 2019] Initial release of MiDaS [Link](https://github.com/intel-isl/MiDaS/releases/tag/v1)
 
 ### Setup 
 
