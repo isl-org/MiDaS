@@ -9,7 +9,7 @@ import cv2
 from torchvision.transforms import Compose
 from models.midas_net import MidasNet
 from models.transforms import Resize, NormalizeImage, PrepareForNet
-
+import time
 
 def run(input_path, output_path, model_path):
     """Run MonoDepthNN to compute depth maps.
@@ -58,6 +58,7 @@ def run(input_path, output_path, model_path):
 
     for ind, img_name in enumerate(img_names):
 
+        start = time.time()
         print("  processing {} ({}/{})".format(img_name, ind + 1, num_images))
 
         # input
@@ -81,6 +82,8 @@ def run(input_path, output_path, model_path):
                 .numpy()
             )
 
+        print(f"{img_name} took {start - time.time()} s")
+        
         # output
         filename = os.path.join(
             output_path, os.path.splitext(os.path.basename(img_name))[0]
