@@ -46,8 +46,9 @@ def run(model_path):
     model.to(device)
     model.eval()
 
-    cap = cv2.VideoCapture(1)
-
+    cap = cv2.VideoCapture(0)
+    cap.set(3,640)
+    cap.set(4,240)
     print("start processing")
 
     while cap.isOpened():
