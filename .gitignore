@@ -108,3 +108,5 @@ venv.bak/
 *.jpg
 *.jpeg
 *.pt
+.cache/*
+.vscode-server-insiders/*
