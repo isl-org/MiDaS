@@ -37,6 +37,9 @@ file in the root folder.
 
 3) The resulting inverse depth maps are written to the `output` folder.
 
+### Dataset
+
+Because of copyright laws the source videos cannot be released. However if you obtained 3D videos on your own, the scripts in [this sibling repository](https://github.com/lasinger/3DVideos2Stereo) should help you generate the dataset.
 
 ### Citation
 
