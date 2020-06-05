@@ -1,6 +1,6 @@
 dependencies = ['torch']
 
-from models.midas_est import MidasNet
+from models.midas_net import MidasNet
 
 def MiDaS(pretrained=True, **kwargs):
     """ # This docstring shows up in hub.help()
