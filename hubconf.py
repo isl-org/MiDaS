@@ -1,5 +1,7 @@
 dependencies = ['torch']
 
+import torch
+
 from models.midas_net import MidasNet
 
 def MiDaS(pretrained=True, **kwargs):
