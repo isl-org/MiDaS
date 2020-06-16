@@ -13,7 +13,7 @@ The pre-trained model corresponds to `DS 4` with multi-objective optimization en
 
 ### Setup 
 
-1) Download the model weights [model.pt](https://github.com/intel-isl/MiDaS/releases/download/v2/model.pt) and place the
+1) Download the model weights [model-f45da743.pt](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) and place the
 file in the root folder.
 
 2) Set up dependencies: 
