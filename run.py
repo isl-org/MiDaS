@@ -7,8 +7,8 @@ import utils
 import cv2
 
 from torchvision.transforms import Compose
-from models.midas_net import MidasNet
-from models.transforms import Resize, NormalizeImage, PrepareForNet
+from midas.midas_net import MidasNet
+from midas.transforms import Resize, NormalizeImage, PrepareForNet
 
 
 def run(input_path, output_path, model_path):
@@ -95,7 +95,7 @@ if __name__ == "__main__":
     INPUT_PATH = "input"
     OUTPUT_PATH = "output"
     # MODEL_PATH = "model.pt"
-    MODEL_PATH = "model.pt"
+    MODEL_PATH = "model-f46da743.pt"
 
     # set torch options
     torch.backends.cudnn.enabled = True
