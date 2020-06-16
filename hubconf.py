@@ -5,6 +5,7 @@ import torch
 from midas.midas_net import MidasNet
 
 
+
 def MiDaS(pretrained=True, **kwargs):
     """ # This docstring shows up in hub.help()
     MiDaS model for monocular depth estimation
