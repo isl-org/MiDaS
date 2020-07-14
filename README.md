@@ -37,6 +37,25 @@ file in the root folder.
 
 3) The resulting inverse depth maps are written to the `output` folder.
 
+#### via Docker
+
+1) Make sure you have installed Docker and the
+   [NVIDIA Docker runtime](https://github.com/NVIDIA/nvidia-docker/wiki/Installation-\(Native-GPU-Support\)).
+
+2) Build the Docker image:
+
+    ```shell
+    docker build -t midas .
+    ```
+
+3) Run inference:
+
+    ```shell
+    docker run --rm --gpus all -v $PWD/input:/opt/MiDaS/input -v $PWD/output:/opt/MiDaS/output midas
+    ```
+
+   This command passes through all of your NVIDIA GPUs to the container, mounts the
+   `input` and `output` directories and then runs the inference.
 
 ### Citation
 
