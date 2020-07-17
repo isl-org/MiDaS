@@ -25,6 +25,8 @@ def run(input_path, output_path, model_path):
       try:
         for gpu in gpus:
           tf.config.experimental.set_memory_growth(gpu, True)
+          tf.config.experimental.set_virtual_device_configuration(gpu,
+            [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=4000)])
       except RuntimeError as e:
         print(e)
 
@@ -37,10 +39,12 @@ def run(input_path, output_path, model_path):
             graph_def.ParseFromString(f.read())
             tf.import_graph_def(graph_def, name='')
 
-        #output_layer = '1191:0'
-        #input_node = 'input.1:0'
-        output_layer = '1195:0'
+        #output_layer = '1195:0'
+        #input_node = '0:0'
+        model_operations = tf.compat.v1.get_default_graph().get_operations()
         input_node = '0:0'
+        output_layer = model_operations[len(model_operations) - 1].name + ':0'
+        print("Last layer name: ", output_layer)
 
         resize_image = Resize(
                     384,
@@ -68,31 +72,31 @@ def run(input_path, output_path, model_path):
 
         print("start processing")
 
-        for ind, img_name in enumerate(img_names):
+        with tf.compat.v1.Session() as sess:
+          try:
+            # load images
+            for ind, img_name in enumerate(img_names):
 
-            print("  processing {} ({}/{})".format(img_name, ind + 1, num_images))
+                print("  processing {} ({}/{})".format(img_name, ind + 1, num_images))
 
-            # input
+                # input
+                img = utils.read_image(img_name)
+                img_input = transform({"image": img})["image"]
 
-            img = utils.read_image(img_name)
-            img_input = transform({"image": img})["image"]
-
-            # compute
-            with tf.compat.v1.Session() as sess:
-                try:
-                    prob_tensor = sess.graph.get_tensor_by_name(output_layer)
-                    prediction, = sess.run(prob_tensor, {input_node: [img_input] })
-                    prediction = prediction.reshape(384, 384)
-                except KeyError:
-                    print ("Couldn't find classification output layer: " + output_layer + ".")
-                    print ("Verify this a model exported from an Object Detection project.")
-                    exit(-1)
+                # compute
+                prob_tensor = sess.graph.get_tensor_by_name(output_layer)
+                prediction, = sess.run(prob_tensor, {input_node: [img_input] })
+                prediction = prediction.reshape(384, 384)
        
             # output
             filename = os.path.join(
                 output_path, os.path.splitext(os.path.basename(img_name))[0]
             )
             utils.write_depth(filename, prediction, bits=2)
+
+          except KeyError:
+            print ("Couldn't find input node: ' + input_node + ' or output layer: " + output_layer + ".")
+            exit(-1)
 
         print("finished")
 

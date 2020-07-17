@@ -8,7 +8,7 @@ import sys
 import numpy as np
 sys.path
 sys.path.append("C:\Intel\onnx_tf\onnx-tensorflow")
-print(sys.path)
+#print(sys.path)
 
 import onnx
 import onnx_tf
