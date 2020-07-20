@@ -52,9 +52,7 @@ def run(input_path, output_path, model_path):
                 resize_method="upper_bound",
                 image_interpolation_method=cv2.INTER_CUBIC,
             )
-
-    #normalize_image = NormalizeImage(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-
+    
     def compose2(f1, f2):
         return lambda x: f2(f1(x))
 
@@ -81,6 +79,7 @@ def run(input_path, output_path, model_path):
         # compute
         output = tf_rep.run(img_input.reshape(1, 3, 384, 384))
         prediction = np.array(output).reshape(384, 384)
+        prediction = cv2.resize(prediction, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_CUBIC)
        
         # output
         filename = os.path.join(
