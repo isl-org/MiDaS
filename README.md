@@ -16,7 +16,7 @@ The pre-trained model corresponds to `DS 4` with multi-objective optimization en
 
 An online demo of the model is available: http://35.202.76.57/
 
-Please be patient. Inference might take up to 30 seconds due to technical restrictions.
+Please be patient. Inference might take up to 30 seconds due to hardware restrictions.
 
 ### Setup 
 
