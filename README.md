@@ -8,8 +8,15 @@ René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, Vladlen Koltun
 The pre-trained model corresponds to `DS 4` with multi-objective optimization enabled.
 
 ### Changelog 
-* **[Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust**
+* [Jul 2020] Added TensorFlow and ONNX code. Added [online demo](http://35.202.76.57/).
+* [Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust
 * [Jul 2019] Initial release of MiDaS ([Link](https://github.com/intel-isl/MiDaS/releases/tag/v1))
+
+### Online demo
+
+An online demo of the model is available: http://35.202.76.57/
+
+Please be patient. Inference might take up to 30 seconds due to technical restrictions.
 
 ### Setup 
 
@@ -56,6 +63,10 @@ file in the root folder.
 
    This command passes through all of your NVIDIA GPUs to the container, mounts the
    `input` and `output` directories and then runs the inference.
+
+#### via TensorFlow or ONNX
+
+See [README](https://github.com/intel-isl/MiDaS/tree/master/tf) in the `tf` subdirectory.
 
 ### Citation
 
