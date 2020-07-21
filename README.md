@@ -44,6 +44,7 @@ file in the root folder.
 
 3) The resulting inverse depth maps are written to the `output` folder.
 
+
 #### via Docker
 
 1) Make sure you have installed Docker and the
@@ -63,6 +64,10 @@ file in the root folder.
 
    This command passes through all of your NVIDIA GPUs to the container, mounts the
    `input` and `output` directories and then runs the inference.
+
+#### via PyTorch Hub
+
+The pretrained model is also available on [PyTorch Hub](https://pytorch.org/hub/intelisl_midas_v2/)
 
 #### via TensorFlow or ONNX
 
