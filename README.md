@@ -1,11 +1,11 @@
 ## Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer
 
-This repository contains code to compute depth from a single image. It accompanies our [paper](https://arxiv.org/abs/1907.01341v2):
+This repository contains code to compute depth from a single image. It accompanies our [paper](https://arxiv.org/abs/1907.01341v3):
 
 >Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer  
 René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, Vladlen Koltun
 
-The pre-trained model corresponds to `DS 4` with multi-objective optimization enabled.
+The pre-trained model corresponds to `MIX 5` with multi-objective optimization enabled.
 
 ### Changelog 
 * [Jul 2020] Added TensorFlow and ONNX code. Added [online demo](http://35.202.76.57/).
@@ -77,11 +77,11 @@ See [README](https://github.com/intel-isl/MiDaS/tree/master/tf) in the `tf` subd
 
 Please cite our paper if you use this code or any of the models:
 ```
-@article{Ranftl2019,
+@article{Ranftl2020,
 	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
 	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer},
-	journal   = {arXiv:1907.01341},
-	year      = {2019},
+	journal   = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+	year      = {2020},
 }
 ```
 
