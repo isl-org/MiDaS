@@ -115,8 +115,8 @@ Please cite our paper if you use this code or any of the models:
 @article{Ranftl2019,
 	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
 	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer},
-	journal   = {arXiv:1907.01341},
-	year      = {2019},
+	journal   = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+	year      = {2020},
 }
 ```
 
