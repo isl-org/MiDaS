@@ -11,7 +11,7 @@
 
 ### Run inference on TensorFlow-model by using TensorFlow
 
-1) Download the model weights [model-f45da743.pb](https://github.com/AlexeyAB/MiDaS/releases/download/v2/model-f46da743.pb) and place the
+1) Download the model weights [model-f45da743.pb](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pb) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -40,7 +40,7 @@ pip install grpcio tensorflow tensorflow-addons
 
 ### Run inference on ONNX-model by using TensorFlow
 
-1) Download the model weights [model-f45da743.onnx](https://github.com/AlexeyAB/MiDaS/releases/download/v2/model-f46da743.onnx) and place the
+1) Download the model weights [model-f45da743.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.onnx) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -107,5 +107,21 @@ pip install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pyto
 ### Requirements
 
    The code was tested with Python 3.6.9, PyTorch 1.5.1, TensorFlow 2.2.0, TensorFlow-addons 0.8.3, ONNX 1.7.0, ONNX-TensorFlow (GitHub-master-17.07.2020) and OpenCV 4.3.0.
+ 
+### Citation
+
+Please cite our paper if you use this code or any of the models:
+```
+@article{Ranftl2019,
+	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
+	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer},
+	journal   = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+	year      = {2020},
+}
+```
+
+### License 
+
+MIT License 
 
    

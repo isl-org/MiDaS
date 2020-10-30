@@ -1,15 +1,22 @@
 ## Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer
 
-This repository contains code to compute depth from a single image. It accompanies our [paper](https://arxiv.org/abs/1907.01341v2):
+This repository contains code to compute depth from a single image. It accompanies our [paper](https://arxiv.org/abs/1907.01341v3):
 
 >Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer  
 René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, Vladlen Koltun
 
-The pre-trained model corresponds to `DS 4` with multi-objective optimization enabled.
+The pre-trained model corresponds to `MIX 5` with multi-objective optimization enabled.
 
 ### Changelog 
-* **[Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust**
+* [Jul 2020] Added TensorFlow and ONNX code. Added [online demo](http://35.202.76.57/).
+* [Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust
 * [Jul 2019] Initial release of MiDaS ([Link](https://github.com/intel-isl/MiDaS/releases/tag/v1))
+
+### Online demo
+
+An online demo of the model is available: http://35.202.76.57/
+
+Please be patient. Inference might take up to 30 seconds due to hardware restrictions.
 
 ### Setup 
 
@@ -37,6 +44,7 @@ file in the root folder.
 
 3) The resulting inverse depth maps are written to the `output` folder.
 
+
 #### via Docker
 
 1) Make sure you have installed Docker and the
@@ -57,15 +65,23 @@ file in the root folder.
    This command passes through all of your NVIDIA GPUs to the container, mounts the
    `input` and `output` directories and then runs the inference.
 
+#### via PyTorch Hub
+
+The pretrained model is also available on [PyTorch Hub](https://pytorch.org/hub/intelisl_midas_v2/)
+
+#### via TensorFlow or ONNX
+
+See [README](https://github.com/intel-isl/MiDaS/tree/master/tf) in the `tf` subdirectory.
+
 ### Citation
 
 Please cite our paper if you use this code or any of the models:
 ```
-@article{Ranftl2019,
+@article{Ranftl2020,
 	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
 	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer},
-	journal   = {arXiv:1907.01341},
-	year      = {2019},
+	journal   = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
+	year      = {2020},
 }
 ```
 

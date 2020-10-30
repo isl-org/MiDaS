@@ -9,6 +9,7 @@ RUN apt-get update && apt-get -y install \
     libsm6 \
     libxext6 \
     libxrender-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # install python dependencies
