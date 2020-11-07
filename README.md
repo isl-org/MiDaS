@@ -8,6 +8,7 @@ René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, Vladlen Koltun
 The pre-trained model corresponds to `MIX 5` with multi-objective optimization enabled.
 
 ### Changelog 
+* [Nov 2020] Released new version of MiDaS v2.1 - real-time model for Mobile (iOS/Android) and ROS1 package
 * [Jul 2020] Added TensorFlow and ONNX code. Added [online demo](http://35.202.76.57/).
 * [Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust
 * [Jul 2019] Initial release of MiDaS ([Link](https://github.com/intel-isl/MiDaS/releases/tag/v1))
@@ -20,7 +21,8 @@ Please be patient. Inference might take up to 30 seconds due to hardware restric
 
 ### Setup 
 
-1) Download the model weights [model-f45da743.pt](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) and place the
+1) Download the model weights [model-f45da743.pt](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) 
+and [model_opt_checkpoint.pt](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model_opt_checkpoint.pt) and place the
 file in the root folder.
 
 2) Set up dependencies: 
@@ -29,7 +31,7 @@ file in the root folder.
     conda install pytorch torchvision opencv
     ```
 
-   The code was tested with Python 3.7, PyTorch 1.2.0, and OpenCV 3.4.2.
+   The code was tested with Python 3.7, PyTorch 1.7.0, and OpenCV 4.4.0.
 
     
 ### Usage
@@ -40,6 +42,12 @@ file in the root folder.
 
     ```shell
     python run.py
+    ```
+
+    Or run the small model:
+
+    ```shell
+    python run.py --model_weights model_opt_checkpoint.pt --model_type small
     ```
 
 3) The resulting inverse depth maps are written to the `output` folder.
@@ -72,6 +80,14 @@ The pretrained model is also available on [PyTorch Hub](https://pytorch.org/hub/
 #### via TensorFlow or ONNX
 
 See [README](https://github.com/intel-isl/MiDaS/tree/master/tf) in the `tf` subdirectory.
+
+#### via Mobile (iOS / Android)
+
+See [README](https://github.com/intel-isl/MiDaS/tree/master/mobile) in the `mobile` subdirectory.
+
+#### via ROS1 (Robot Operating System)
+
+See [README](https://github.com/intel-isl/MiDaS/tree/master/ros) in the `ros` subdirectory.
 
 ### Citation
 

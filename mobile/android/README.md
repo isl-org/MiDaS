@@ -1,5 +1,4 @@
-# midas_tf_android
-MiDaS on Android smartphone by using TensorFlow-lite (TFLite)
+# MiDaS on Android smartphone by using TensorFlow-lite (TFLite)
 
 
 * Either use Android Studio for compilation.

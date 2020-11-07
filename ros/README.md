@@ -30,7 +30,7 @@ wget https://raw.githubusercontent.com/intel-isl/MiDaS/ros/additions/install_ros
 ```
 
 
-* install LibTorch 1.7 or with CUDA 11.0:
+* install LibTorch 1.7 with CUDA 11.0:
 
 On **Jetson (ARM)**:
 ```bash
