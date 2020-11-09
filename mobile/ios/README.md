@@ -3,7 +3,7 @@
 ### Requirements
 
 - XCode 11.0 or above
-- iOS 12.0 or above
+- iOS 12.0 or above, [iOS 14 breaks the NPU Delegate](https://github.com/tensorflow/tensorflow/issues/43339)
 - TensorFlow 2.4.0, TensorFlowLiteSwift -> 0.0.1-nightly
 
 ## Quick Start with a MiDaS Example
