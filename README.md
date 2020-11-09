@@ -22,7 +22,7 @@ Please be patient. Inference might take up to 30 seconds due to hardware restric
 ### Setup 
 
 1) Download the model weights [model-f45da743.pt](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) 
-and [model_opt_checkpoint.pt](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model_opt_checkpoint.pt) and place the
+and [model-small-70d6b9c8.pt](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small-70d6b9c8.pt) and place the
 file in the root folder.
 
 2) Set up dependencies: 
@@ -47,7 +47,7 @@ file in the root folder.
     Or run the small model:
 
     ```shell
-    python run.py --model_weights model_opt_checkpoint.pt --model_type small
+    python run.py --model_weights model-small-70d6b9c8.pt --model_type small
     ```
 
 3) The resulting inverse depth maps are written to the `output` folder.

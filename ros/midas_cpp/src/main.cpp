@@ -110,7 +110,7 @@ public:
     {     
         ros::param::param<std::string>("~input_topic", input_topic, "image_topic");
         ros::param::param<std::string>("~output_topic", output_topic, "midas_topic");
-        ros::param::param<std::string>("~model_name", model_name, "model_opt.pt");
+        ros::param::param<std::string>("~model_name", model_name, "model-small-traced.pt");
         ros::param::param<bool>("~out_orig_size", out_orig_size, true);
         ros::param::param<int>("~net_width", net_width, 256);
         ros::param::param<int>("~net_height", net_height, 256);

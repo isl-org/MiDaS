@@ -9,7 +9,7 @@ import argparse
 
 from torchvision.transforms import Compose
 from midas.midas_net import MidasNet
-from midas.midas_net_custom import MidasNet_custom
+from midas.midas_net_custom import MidasNet_small
 from midas.transforms import Resize, NormalizeImage, PrepareForNet
 
 
@@ -32,7 +32,7 @@ def run(input_path, output_path, model_path, model_type="large", optimize=True):
         model = MidasNet(model_path, non_negative=True)
         net_w, net_h = 384, 384
     elif model_type == "small":
-        model = MidasNet_custom(model_path, features=64, backbone="efficientnet_lite3", exportable=True, non_negative=True, blocks={'expand': True})
+        model = MidasNet_small(model_path, features=64, backbone="efficientnet_lite3", exportable=True, non_negative=True, blocks={'expand': True})
         net_w, net_h = 256, 256
     else:
         print(f"model_type '{model_type}' not implemented, use: --model_type large")
@@ -128,7 +128,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument('-m', '--model_weights', 
-        default='model-f46da743.pt',
+        default='model-f6b98070.pt',
         help='path to the trained weights of model'
     )
 

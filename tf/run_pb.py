@@ -120,7 +120,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument('-m', '--model_weights', 
-        default='model-f46da743.pb',
+        default='model-f6b98070.pb',
         help='path to the trained weights of model'
     )
 

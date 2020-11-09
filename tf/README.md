@@ -12,7 +12,7 @@
 ### Run inference on TensorFlow-model by using TensorFlow
 
 1) Download the model weights [model-f45da743.pb](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pb) 
-and [model_opt.pb](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model_opt.pb) and place the
+and [model-small.pb](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small.pb) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -39,7 +39,7 @@ pip install -I grpcio tensorflow==2.3.0 tensorflow-addons==0.11.2 numpy==1.18.0
     Or run the small model:
 
     ```shell
-    python tf/run_pb.py --model_weights model_opt.pb --model_type small
+    python tf/run_pb.py --model_weights model-small.pb --model_type small
     ```
 
 3) The resulting inverse depth maps are written to the `tf/output` folder.
@@ -48,7 +48,7 @@ pip install -I grpcio tensorflow==2.3.0 tensorflow-addons==0.11.2 numpy==1.18.0
 ### Run inference on ONNX-model by using ONNX-Runtime
 
 1) Download the model weights [model-f45da743.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.onnx) 
-and [model_opt.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model_opt.onnx) and place the
+and [model-small.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small.onnx) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -78,7 +78,7 @@ pip install onnxruntime==1.5.2
     Or run the small model:
 
     ```shell
-    python tf/run_onnx.py --model_weights model_opt.onnx --model_type small
+    python tf/run_onnx.py --model_weights model-small.onnx --model_type small
     ```
 
 3) The resulting inverse depth maps are written to the `tf/output` folder.

@@ -104,7 +104,7 @@ if __name__ == "__main__":
     )
 
     parser.add_argument('-m', '--model_weights', 
-        default='model-f46da743.onnx',
+        default='model-f6b98070.onnx',
         help='path to the trained weights of model'
     )
 

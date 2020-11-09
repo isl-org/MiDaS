@@ -6,11 +6,10 @@ import torch
 import torch.nn as nn
 
 from .base_model import BaseModel
-from .blocks import FeatureFusionBlock, Interpolate, _make_encoder
-from .blocks_custom import _make_encoder_custom, FeatureFusionBlock_custom
+from .blocks import FeatureFusionBlock, FeatureFusionBlock_custom, Interpolate, _make_encoder
 
 
-class MidasNet_custom(BaseModel):
+class MidasNet_small(BaseModel):
     """Network for monocular depth estimation.
     """
 
@@ -25,7 +24,7 @@ class MidasNet_custom(BaseModel):
         """
         print("Loading weights: ", path)
 
-        super(MidasNet_custom, self).__init__()
+        super(MidasNet_small, self).__init__()
 
         use_pretrained = False if path else True
                 
@@ -47,7 +46,7 @@ class MidasNet_custom(BaseModel):
             features3=features*4
             features4=features*8
 
-        self.pretrained, self.scratch = _make_encoder_custom(self.backbone, features, use_pretrained, groups=self.groups, expand=self.expand, exportable=exportable)
+        self.pretrained, self.scratch = _make_encoder(self.backbone, features, use_pretrained, groups=self.groups, expand=self.expand, exportable=exportable)
   
         self.scratch.activation = nn.ReLU(False)    
 
