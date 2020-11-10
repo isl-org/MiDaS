@@ -14,7 +14,7 @@ The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be
 * [Nov 2020] Released MiDaS v2.1:
 	- New model that was trained on 10 datasets. On average about [10% more accurate](#Accuracy) than [MiDaS v2.0](https://github.com/intel-isl/MiDaS/releases/tag/v2)
 	- New light-weight model that achieves [real-time performance](https://github.com/intel-isl/MiDaS/tree/master/mobile) on mobile platforms.
-	- Sample applications for [iOS and Android](https://github.com/intel-isl/MiDaS/tree/master/mobile)
+	- Sample applications for [iOS](https://github.com/intel-isl/MiDaS/tree/master/mobile/ios) and [Android](https://github.com/intel-isl/MiDaS/tree/master/mobile/android)
 	- [ROS package](https://github.com/intel-isl/MiDaS/tree/master/ros) for easy deployment on robots
 * [Jul 2020] Added TensorFlow and ONNX code. Added [online demo](http://35.202.76.57/).
 * [Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust
