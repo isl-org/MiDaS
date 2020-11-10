@@ -4,12 +4,13 @@ import os
 import glob
 import utils
 import cv2
+import argparse
 
 import tensorflow as tf
 
 from transforms import Resize, NormalizeImage, PrepareForNet
 
-def run(input_path, output_path, model_path):
+def run(input_path, output_path, model_path, model_type="large"):
     """Run MonoDepthNN to compute depth maps.
 
     Args:
@@ -30,6 +31,15 @@ def run(input_path, output_path, model_path):
       except RuntimeError as e:
         print(e)
 
+    # network resolution
+    if model_type == "large":
+        net_w, net_h = 384, 384
+    elif model_type == "small":
+        net_w, net_h = 256, 256
+    else:
+        print(f"model_type '{model_type}' not implemented, use: --model_type large")
+        assert False
+
     # load network
     graph_def = tf.compat.v1.GraphDef()
     with tf.io.gfile.GFile(model_path, 'rb') as f:
@@ -43,8 +53,8 @@ def run(input_path, output_path, model_path):
     print("Last layer name: ", output_layer)
 
     resize_image = Resize(
-                384,
-                384,
+                net_w,
+                net_h,
                 resize_target=None,
                 keep_aspect_ratio=False,
                 ensure_multiple_of=32,
@@ -80,7 +90,7 @@ def run(input_path, output_path, model_path):
             # compute
             prob_tensor = sess.graph.get_tensor_by_name(output_layer)
             prediction, = sess.run(prob_tensor, {input_node: [img_input] })
-            prediction = prediction.reshape(384, 384)
+            prediction = prediction.reshape(net_h, net_w)
             prediction = cv2.resize(prediction, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_CUBIC)
             
             # output
@@ -97,10 +107,29 @@ def run(input_path, output_path, model_path):
 
 
 if __name__ == "__main__":
-    # set paths
-    INPUT_PATH = "input"
-    OUTPUT_PATH = "output"
-    MODEL_PATH = "model-f46da743.pb"
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-i', '--input_path', 
+        default='input',
+        help='folder with input images'
+    )
+
+    parser.add_argument('-o', '--output_path', 
+        default='output',
+        help='folder for output images'
+    )
+
+    parser.add_argument('-m', '--model_weights', 
+        default='model-f6b98070.pb',
+        help='path to the trained weights of model'
+    )
+
+    parser.add_argument('-t', '--model_type', 
+        default='large',
+        help='model type: large or small'
+    )
+
+    args = parser.parse_args()
 
     # compute depth maps
-    run(INPUT_PATH, OUTPUT_PATH, MODEL_PATH)
+    run(args.input_path, args.output_path, args.model_weights, args.model_type)

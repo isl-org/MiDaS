@@ -3,6 +3,7 @@ dependencies = ["torch"]
 import torch
 
 from midas.midas_net import MidasNet
+from midas.midas_net_custom import MidasNet_small
 
 
 def MiDaS(pretrained=True, **kwargs):
@@ -15,7 +16,26 @@ def MiDaS(pretrained=True, **kwargs):
 
     if pretrained:
         checkpoint = (
-            "https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt"
+            "https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt"
+        )
+        state_dict = torch.hub.load_state_dict_from_url(
+            checkpoint, progress=True, check_hash=True
+        )
+        model.load_state_dict(state_dict)
+
+    return model
+
+def MiDaS_small(pretrained=True, **kwargs):
+    """ # This docstring shows up in hub.help()
+    MiDaS model for monocular depth estimation
+    pretrained (bool): load pretrained weights into model
+    """
+
+    model = MidasNet_small(None, features=64, backbone="efficientnet_lite3", exportable=True, non_negative=True, blocks={'expand': True})
+
+    if pretrained:
+        checkpoint = (
+            "https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small-70d6b9c8.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
             checkpoint, progress=True, check_hash=True

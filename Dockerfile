@@ -21,7 +21,7 @@ COPY ./midas ./midas
 COPY ./*.py ./
 
 # download model weights so the docker image can be used offline
-RUN curl -OL https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt
+RUN curl -OL https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt
 RUN python3 run.py; exit 0
 
 # entrypoint (dont forget to mount input and output directories)
