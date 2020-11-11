@@ -19,7 +19,7 @@ def MiDaS(pretrained=True, **kwargs):
             "https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
-            checkpoint, progress=True, check_hash=True
+            checkpoint, map_location=torch.device('cpu'), progress=True, check_hash=True
         )
         model.load_state_dict(state_dict)
 
@@ -38,7 +38,7 @@ def MiDaS_small(pretrained=True, **kwargs):
             "https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small-70d6b9c8.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
-            checkpoint, progress=True, check_hash=True
+            checkpoint, map_location=torch.device('cpu'), progress=True, check_hash=True
         )
         model.load_state_dict(state_dict)
 
@@ -68,4 +68,23 @@ def transforms():
             lambda sample: torch.from_numpy(sample["image"]).unsqueeze(0),
         ]
     )
+
+    transforms.small_transform = Compose(
+        [
+            lambda img: {"image": img / 255.0},
+            Resize(
+                256,
+                256,
+                resize_target=None,
+                keep_aspect_ratio=True,
+                ensure_multiple_of=32,
+                resize_method="upper_bound",
+                image_interpolation_method=cv2.INTER_CUBIC,
+            ),
+            NormalizeImage(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            PrepareForNet(),
+            lambda sample: torch.from_numpy(sample["image"]).unsqueeze(0),
+        ]
+    )
+
     return transforms
