@@ -71,6 +71,14 @@ cp src/additions/do_catkin_make.sh ./do_catkin_make.sh
 
 * run only `midas` node: `~/catkin_ws/src/launch_midas_cpp.sh`
 
+#### Test
+
+* Test - capture video and show result in the window:
+    * place any `test.mp4` video file to the directory `~/catkin_ws/src/`
+    * run `midas` node: `~/catkin_ws/src/launch_midas_cpp.sh`
+    * run test nodes: `~/catkin_ws/src/run_talker_listener_test.sh`
+    
+    (to use Python 2, replace `python3` to `python2` in the first line for each of 3 py-files in the directory `~/catkin_ws/src/midas_cpp/scripts/` )
 
 ## Mobile version of MiDaS - Monocular Depth Estimation
 
