@@ -48,11 +48,16 @@ wget https://download.pytorch.org/libtorch/cu110/libtorch-cxx11-abi-shared-with-
 unzip libtorch-cxx11-abi-shared-with-deps-1.7.0+cu110.zip
 ```
 
+* create symlink for OpenCV:
+
+```bash
+sudo ln -s /usr/include/opencv4 /usr/include/opencv
+```
 
 * download and install MiDaS:
 
 ```bash
-sudo ln -s /usr/include/opencv4 /usr/include/opencv
+source ~/.bashrc
 cd ~/
 mkdir catkin_ws
 cd catkin_ws
@@ -62,6 +67,7 @@ cp -r MiDaS/ros/* src
 
 chmod +x src/additions/*.sh
 chmod +x src/*.sh
+chmod +x src/midas_cpp/scripts/*.py
 cp src/additions/do_catkin_make.sh ./do_catkin_make.sh
 ./do_catkin_make.sh
 ./src/additions/downloads.sh
@@ -76,9 +82,9 @@ cp src/additions/do_catkin_make.sh ./do_catkin_make.sh
 * Test - capture video and show result in the window:
     * place any `test.mp4` video file to the directory `~/catkin_ws/src/`
     * run `midas` node: `~/catkin_ws/src/launch_midas_cpp.sh`
-    * run test nodes: `~/catkin_ws/src/run_talker_listener_test.sh`
+    * run test nodes in another terminal: `cd ~/catkin_ws/src && ./run_talker_listener_test.sh` and wait 30 seconds
     
-    (to use Python 2, replace `python3` to `python2` in the first line for each of 3 py-files in the directory `~/catkin_ws/src/midas_cpp/scripts/` )
+    (to use Python 2, run command `sed -i 's/python3/python2/' ~/catkin_ws/src/midas_cpp/scripts/*.py` )
 
 ## Mobile version of MiDaS - Monocular Depth Estimation
 

@@ -18,7 +18,7 @@ sudo apt-get upgrade
 # Desktop-Full Install:
 sudo apt-get install ros-melodic-desktop-full
 
-printf "source /opt/ros/melodic/setup.bash\n" >> ~/.bashrc
+printf "\nsource /opt/ros/melodic/setup.bash\n" >> ~/.bashrc
 
 # 1.5 Initialize rosdep
 sudo rosdep init

@@ -17,7 +17,7 @@ sudo apt-get upgrade
 # Desktop-Full Install:
 sudo apt-get install ros-noetic-desktop-full
 
-printf "source /opt/ros/noetic/setup.bash\n" >> ~/.bashrc
+printf "\nsource /opt/ros/noetic/setup.bash\n" >> ~/.bashrc
 
 # 1.5 Initialize rosdep
 sudo rosdep init
