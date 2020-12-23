@@ -5,7 +5,7 @@ import numpy as np
 import download_checkpoint
 
 
-@runway.command('translate', inputs={'source_imgs': runway.image(description='input image to be translated'),'large': boolean(default=True, description='use large model'),}, outputs={'image': runway.image(description='output image containing the translated result')})
+@runway.command('translate', inputs={'source_imgs': runway.image(description='input image to be translated'),'large': runway.boolean(default=True, description='use large model'),}, outputs={'image': runway.image(description='output image containing the translated result')})
 def translate(midas, inputs):
     cv_image = np.array(inputs['source_imgs']) 
     img = cv2.cvtColor(cv_image, cv2.COLOR_BGR2RGB)
