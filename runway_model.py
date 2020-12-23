@@ -3,7 +3,7 @@ import torch
 import cv2
 import torch
 
-@runway.setup(options={'checkpoint_dir': runway.file(description="runs folder"),})
+@runway.setup(options={'checkpoint_dir': runway.file(extension='.pt', description="checkpoint file"),})
 def setup(opts):
     midas = torch.hub.load("intel-isl/MiDaS", "MiDaS")
     midas.eval()
