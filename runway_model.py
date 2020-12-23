@@ -2,9 +2,6 @@ import runway
 import torch
 import cv2
 import torch
-import urllib.request
-
-import matplotlib.pyplot as plt
 
 @runway.setup(options={'checkpoint_dir': runway.file(description="runs folder"),})
 def setup(opts):
