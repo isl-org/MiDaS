@@ -3,6 +3,7 @@ import cv2
 import torch
 import numpy as np
 import download_checkpoint
+from PIL import Image
 
 
 @runway.command('translate', inputs={'source_imgs': runway.image(description='input image to be translated'),'large': runway.boolean(default=True, description='use large model'),}, outputs={'image': runway.image(description='output image containing the translated result')})
@@ -29,8 +30,9 @@ def translate(midas, inputs):
         ).squeeze()
     
     output = prediction.numpy()
-   
-    return output
+    formatted = (output * 255 / np.max(output)).astype('uint8')
+    img = Image.fromarray(formatted)
+    return img
     
 if __name__ == '__main__':
     runway.run(port=8889)
