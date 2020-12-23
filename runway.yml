@@ -1,12 +1,10 @@
 entrypoint: python runway_model.py
-python: 3.6
-cuda: 9.2
+python: 3.7
+cuda: 10
 spec:
   gpu: True
   cpu: False
 build_steps:
   - apt-get update
-  - apt-get install -y libboost-all-dev
-  - apt-get install -y cmake
-  - apt-get install ffmpeg libsm6 libxext6  -y
-  - pip install -r requirements.txt
+  - apt-get install -y libsm6 libxext6 libxrender-dev
+  - pip3 install runway-python torch~=1.2 torchvision opencv-python~=3.4
