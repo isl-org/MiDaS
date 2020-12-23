@@ -36,14 +36,14 @@ def translate(model, inputs):
     input_batch = transform(img).to(device)
 
     with torch.no_grad():
-    prediction = midas(input_batch)
+        prediction = midas(input_batch)
 
-    prediction = torch.nn.functional.interpolate(
-        prediction.unsqueeze(1),
-        size=img.shape[:2],
-        mode="bicubic",
-        align_corners=False,
-    ).squeeze()
+        prediction = torch.nn.functional.interpolate(
+            prediction.unsqueeze(1),
+            size=img.shape[:2],
+            mode="bicubic",
+            align_corners=False,
+        ).squeeze()
     
     output = prediction.cpu().numpy()
    
