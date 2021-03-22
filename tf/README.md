@@ -11,7 +11,8 @@
 
 ### Run inference on TensorFlow-model by using TensorFlow
 
-1) Download the model weights [model-f45da743.pb](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pb) and place the
+1) Download the model weights [model-f6b98070.pb](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pb) 
+and [model-small.pb](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small.pb) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -22,7 +23,7 @@ pip install --upgrade pip
 pip install opencv-python
 
 # install TensorFlow
-pip install grpcio tensorflow tensorflow-addons
+pip install -I grpcio tensorflow==2.3.0 tensorflow-addons==0.11.2 numpy==1.18.0
 ```
 
 #### Usage
@@ -35,12 +36,19 @@ pip install grpcio tensorflow tensorflow-addons
     python tf/run_pb.py
     ```
 
+    Or run the small model:
+
+    ```shell
+    python tf/run_pb.py --model_weights model-small.pb --model_type small
+    ```
+
 3) The resulting inverse depth maps are written to the `tf/output` folder.
 
 
-### Run inference on ONNX-model by using TensorFlow
+### Run inference on ONNX-model by using ONNX-Runtime
 
-1) Download the model weights [model-f45da743.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.onnx) and place the
+1) Download the model weights [model-f6b98070.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.onnx) 
+and [model-small.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small.onnx) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -50,14 +58,11 @@ file in the `/tf/` folder.
 pip install --upgrade pip
 pip install opencv-python
 
-# install TensorFlow
-pip install grpcio tensorflow tensorflow-addons
+# install ONNX
+pip install onnx==1.7.0
 
-# install ONNX and ONNX_TensorFlow
-pip install onnx
-
-git clone https://github.com/onnx/onnx-tensorflow.git && cd onnx-tensorflow && pip install -e . && cd ..
-dir
+# install ONNX Runtime
+pip install onnxruntime==1.5.2
 ```
 
 #### Usage
@@ -70,13 +75,19 @@ dir
     python tf/run_onnx.py
     ```
 
+    Or run the small model:
+
+    ```shell
+    python tf/run_onnx.py --model_weights model-small.onnx --model_type small
+    ```
+
 3) The resulting inverse depth maps are written to the `tf/output` folder.
 
 
 
 ### Make ONNX model from downloaded Pytorch model file
 
-1) Download the model weights [model-f45da743.pt](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) and place the
+1) Download the model weights [model-f6b98070.pt](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt) and place the
 file in the root folder.
 
 2) Set up dependencies: 
@@ -86,11 +97,20 @@ file in the root folder.
 pip install --upgrade pip
 pip install opencv-python
 
-# install ONNX
-pip install onnx
-
 # install PyTorch TorchVision
-pip install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pytorch.org/whl/torch_stable.html
+pip install -I torch==1.7.0 torchvision==0.8.0
+
+# install TensorFlow
+pip install -I grpcio tensorflow==2.3.0 tensorflow-addons==0.11.2 numpy==1.18.0
+
+# install ONNX
+pip install onnx==1.7.0
+
+# install ONNX-TensorFlow
+git clone https://github.com/onnx/onnx-tensorflow.git
+cd onnx-tensorflow 
+git checkout 095b51b88e35c4001d70f15f80f31014b592b81e 
+pip install -e .
 ```
 
 #### Usage
@@ -101,7 +121,7 @@ pip install torch==1.5.1+cu101 torchvision==0.6.1+cu101 -f https://download.pyto
     python tf/make_onnx_model.py
     ```
 
-2) The resulting `model-f46da743.onnx` file is written to the `/tf/` folder.
+2) The resulting `model-f6b98070.onnx` file is written to the `/tf/` folder.
 
 
 ### Requirements

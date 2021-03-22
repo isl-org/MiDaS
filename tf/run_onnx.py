@@ -6,18 +6,15 @@ import utils
 import cv2
 import sys
 import numpy as np
-sys.path
-sys.path.append("C:\Intel\onnx_tf\onnx-tensorflow")
-#print(sys.path)
+import argparse
 
 import onnx
-import onnx_tf
-import tensorflow as tf
+import onnxruntime as rt
 
 from transforms import Resize, NormalizeImage, PrepareForNet
 
 
-def run(input_path, output_path, model_path):
+def run(input_path, output_path, model_path, model_type="large"):
     """Run MonoDepthNN to compute depth maps.
 
     Args:
@@ -32,20 +29,24 @@ def run(input_path, output_path, model_path):
     #device = "CPU"
     print("device: %s" % device)
 
+    # network resolution
+    if model_type == "large":
+        net_w, net_h = 384, 384
+    elif model_type == "small":
+        net_w, net_h = 256, 256
+    else:
+        print(f"model_type '{model_type}' not implemented, use: --model_type large")
+        assert False
+
     # load network
     print("loading model...")
-    model = onnx.load(model_path)
-    print("checking model...")
-    onnx.checker.check_model(model)
-    print("preparing model...")
-    tf_rep = onnx_tf.backend.prepare(model, device)
-
-    print('inputs:', tf_rep.inputs)
-    print('outputs:', tf_rep.outputs)
+    model = rt.InferenceSession(model_path)
+    input_name = model.get_inputs()[0].name
+    output_name = model.get_outputs()[0].name
 
     resize_image = Resize(
-                384,
-                384,
+                net_w,
+                net_h,
                 resize_target=None,
                 keep_aspect_ratio=False,
                 ensure_multiple_of=32,
@@ -72,13 +73,12 @@ def run(input_path, output_path, model_path):
         print("  processing {} ({}/{})".format(img_name, ind + 1, num_images))
 
         # input
-
         img = utils.read_image(img_name)
         img_input = transform({"image": img})["image"]
 
         # compute
-        output = tf_rep.run(img_input.reshape(1, 3, 384, 384))
-        prediction = np.array(output).reshape(384, 384)
+        output = model.run([output_name], {input_name: img_input.reshape(1, 3, net_h, net_w).astype(np.float32)})[0]
+        prediction = np.array(output).reshape(net_h, net_w)
         prediction = cv2.resize(prediction, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_CUBIC)
        
         # output
@@ -91,10 +91,29 @@ def run(input_path, output_path, model_path):
 
 
 if __name__ == "__main__":
-    # set paths
-    INPUT_PATH = "input"
-    OUTPUT_PATH = "output"
-    MODEL_PATH = "model-f46da743.onnx"
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-i', '--input_path', 
+        default='input',
+        help='folder with input images'
+    )
+
+    parser.add_argument('-o', '--output_path', 
+        default='output',
+        help='folder for output images'
+    )
+
+    parser.add_argument('-m', '--model_weights', 
+        default='model-f6b98070.onnx',
+        help='path to the trained weights of model'
+    )
+
+    parser.add_argument('-t', '--model_type', 
+        default='large',
+        help='model type: large or small'
+    )
+
+    args = parser.parse_args()
 
     # compute depth maps
-    run(INPUT_PATH, OUTPUT_PATH, MODEL_PATH)
+    run(args.input_path, args.output_path, args.model_weights, args.model_type)

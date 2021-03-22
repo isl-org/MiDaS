@@ -106,7 +106,7 @@ def run(model_path):
 if __name__ == "__main__":
     # set paths
     # MODEL_PATH = "model.pt"
-    MODEL_PATH = "../model-f46da743.pt"
+    MODEL_PATH = "../model-f6b98070.pt"
     
     # compute depth maps
     run(MODEL_PATH)
