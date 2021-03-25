@@ -6,3 +6,5 @@ ftfy
 regex
 tqdm
 pycrypto
+numpy
+Pillow

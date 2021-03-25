@@ -1,7 +1,8 @@
 import cv2
 import torch
 import gradio as gr
-
+import numpy as np
+from PIL import Image
 
 midas = torch.hub.load("intel-isl/MiDaS", "MiDaS")
 
