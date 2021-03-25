@@ -1,8 +1,5 @@
 import cv2
 import torch
-import urllib.request
-
-import matplotlib.pyplot as plt
 import gradio as gr
 
 
@@ -15,7 +12,7 @@ if use_large_model:
 else:
     midas = torch.hub.load("intel-isl/MiDaS", "MiDaS_small")
 
-device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+device = "cpu"
 midas.to(device)
 
 midas_transforms = torch.hub.load("intel-isl/MiDaS", "transforms")
