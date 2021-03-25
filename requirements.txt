@@ -2,3 +2,7 @@ gradio
 torch~=1.2
 torchvision 
 opencv-python~=3.4
+ftfy
+regex
+tqdm
+pycrypto
