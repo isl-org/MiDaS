@@ -32,12 +32,11 @@ The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be
 
 ### Setup 
 
-1) Pick one or more models and download corresponding weights: 
+1) Pick one or more models and download corresponding weights to the `weights` folder:
 
 - For highest quality: [dpt_large](https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt)
 - For moderately less quality, but better speed on CPU and slower GPUs: [dpt_hybrid](https://github.com/intel-isl/DPT/releases/download/1_0/dpt_hybrid-midas-501f0c75.pt)
 - For real-time applications on resource-constrained devices: [midas_v21_small](https://github.com/AlexeyAB/MiDaS/releases/download/midas_dpt/midas_v21_small-70d6b9c8.pt)
-and place the file the `weights` folder.
 - Legacy convolutional model: [midas_v21](https://github.com/AlexeyAB/MiDaS/releases/download/midas_dpt/midas_v21-f6b98070.pt)
 
 2) Set up dependencies: 
