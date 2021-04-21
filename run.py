@@ -36,6 +36,7 @@ def run(input_path, output_path, model_path, model_type="large", optimize=True):
             non_negative=True,
         )
         net_w, net_h = 384, 384
+        resize_mode = "minimal"
         normalization = NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
     elif model_type == "dpt_hybrid": #DPT-Hybrid
         model = DPTDepthModel(
@@ -44,16 +45,19 @@ def run(input_path, output_path, model_path, model_type="large", optimize=True):
             non_negative=True,
         )
         net_w, net_h = 384, 384
+        resize_mode="minimal"
         normalization = NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
     elif model_type == "midas_v21":
         model = MidasNet(model_path, non_negative=True)
         net_w, net_h = 384, 384
+        resize_mode="upper_bound"
         normalization = NormalizeImage(
             mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
         )
     elif model_type == "midas_v21_small":
         model = MidasNet_small(model_path, features=64, backbone="efficientnet_lite3", exportable=True, non_negative=True, blocks={'expand': True})
         net_w, net_h = 256, 256
+        resize_mode="upper_bound"
         normalization = NormalizeImage(
             mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]
         )
@@ -69,7 +73,7 @@ def run(input_path, output_path, model_path, model_type="large", optimize=True):
                 resize_target=None,
                 keep_aspect_ratio=True,
                 ensure_multiple_of=32,
-                resize_method="upper_bound",
+                resize_method=resize_mode,
                 image_interpolation_method=cv2.INTER_CUBIC,
             ),
             normalization,

@@ -8,7 +8,7 @@ from midas.midas_net_custom import MidasNet_small
 
 def DPT_Large(pretrained=True, **kwargs):
     """ # This docstring shows up in hub.help()
-    MiDaS model for monocular depth estimation
+    MiDaS DPT-Large model for monocular depth estimation
     pretrained (bool): load pretrained weights into model
     """
 
@@ -31,7 +31,7 @@ def DPT_Large(pretrained=True, **kwargs):
     
 def DPT_Hybrid(pretrained=True, **kwargs):
     """ # This docstring shows up in hub.help()
-    MiDaS model for monocular depth estimation
+    MiDaS DPT-Hybrid model for monocular depth estimation
     pretrained (bool): load pretrained weights into model
     """
 
@@ -54,7 +54,7 @@ def DPT_Hybrid(pretrained=True, **kwargs):
     
 def MiDaS(pretrained=True, **kwargs):
     """ # This docstring shows up in hub.help()
-    MiDaS model for monocular depth estimation
+    MiDaS v2.1 model for monocular depth estimation
     pretrained (bool): load pretrained weights into model
     """
 
@@ -73,7 +73,7 @@ def MiDaS(pretrained=True, **kwargs):
 
 def MiDaS_small(pretrained=True, **kwargs):
     """ # This docstring shows up in hub.help()
-    MiDaS model for monocular depth estimation
+    MiDaS small model for monocular depth estimation on resource-constrained devices
     pretrained (bool): load pretrained weights into model
     """
 
@@ -142,7 +142,7 @@ def transforms():
                 resize_target=None,
                 keep_aspect_ratio=True,
                 ensure_multiple_of=32,
-                resize_method="upper_bound",
+                resize_method="minimal",
                 image_interpolation_method=cv2.INTER_CUBIC,
             ),
             NormalizeImage(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
