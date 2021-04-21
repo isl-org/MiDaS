@@ -8,8 +8,8 @@ René Ranftl, Katrin Lasinger, David Hafner, Konrad Schindler, Vladlen Koltun
 
 and our [preprint](https://arxiv.org/abs/2103.13413):
 
-> Vision Transformers for Dense Prediction
-René Ranftl, Alexey Bochkovskiy, Vladlen Koltun
+> Vision Transformers for Dense Prediction  
+> René Ranftl, Alexey Bochkovskiy, Vladlen Koltun
 
 
 MiDaS was trained on 10 datasets (ReDWeb, DIML, Movies, MegaDepth, WSVD, TartanAir, HRWSI, ApolloScape, BlendedMVS, IRS) with
@@ -19,7 +19,7 @@ The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be
 
 ### Changelog
 * [Apr 2021] Released MiDaS v3.0:
-    - Our new models based on [Dense Prediction Transformers](https://arxiv.org/abs/2103.13413) are on average [21% more accurate](#Accuracy) than MiDaS v2.1
+    - New models based on [Dense Prediction Transformers](https://arxiv.org/abs/2103.13413) are on average [21% more accurate](#Accuracy) than MiDaS v2.1
     - Additional models can be found at [here](https://github.com/intel-isl/DPT)
 * [Nov 2020] Released MiDaS v2.1:
 	- New model that was trained on 10 datasets and is on average about [10% more accurate](#Accuracy) than [MiDaS v2.0](https://github.com/intel-isl/MiDaS/releases/tag/v2)
