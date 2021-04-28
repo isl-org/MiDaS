@@ -117,11 +117,11 @@ Zero-shot error (the lower - the better) and speed (FPS):
 | MiDaS v2 small | **0.1248** | 0.1550 | **0.3300** | **21.81** | 15.73 | 17.00 | 0.6 |
 | MiDaS v2.1 small [URL]() | 0.1344 | **0.1344** | 0.3370 | 29.27 | **13.43** | **14.53** | 30 |
 | | | | | | | |
-| **Big models:** | | | | | | | GPU RTX 2080Ti |
-| MiDaS v2 large [URL](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) | 0.1246 | 0.1290 | 0.3270 | 23.90 | 9.55 | 14.29 | 59 |
-| MiDaS v2.1 large [URL](https://github.com/AlexeyAB/MiDaS/releases/download/midas_dpt/midas_v21-f6b98070.pt) | 0.1295 | 0.1155 | 0.3285 | 16.08 | 8.71 | 12.51 | 59 |
-| MiDaS v3.0 DPT-Hybrid [URL](https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt) | 0.1106 | 0.0934 | 0.2741 | 11.56 | 8.69 | 10.89 | |
-| MiDaS v3.0 DPT-Large [URL](https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt) | **0.1082** | **0.0888** | **0.2697** | **8.46** | **8.32** | **9.97** |  |
+| **Big models:** | | | | | | | GPU RTX 3090 |
+| MiDaS v2 large [URL](https://github.com/intel-isl/MiDaS/releases/download/v2/model-f46da743.pt) | 0.1246 | 0.1290 | 0.3270 | 23.90 | 9.55 | 14.29 | 51 |
+| MiDaS v2.1 large [URL](https://github.com/AlexeyAB/MiDaS/releases/download/midas_dpt/midas_v21-f6b98070.pt) | 0.1295 | 0.1155 | 0.3285 | 16.08 | 8.71 | 12.51 | 51 |
+| MiDaS v3.0 DPT-Hybrid [URL](https://github.com/intel-isl/DPT/releases/download/1_0/dpt_hybrid-midas-501f0c75.pt) | 0.1106 | 0.0934 | 0.2741 | 11.56 | 8.69 | 10.89 | 46 |
+| MiDaS v3.0 DPT-Large [URL](https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt) | **0.1082** | **0.0888** | **0.2697** | **8.46** | **8.32** | **9.97** | 47 |
 
 
 
