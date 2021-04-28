@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y install \
     && rm -rf /var/lib/apt/lists/*
 
 # install python dependencies
-RUN pip3 install torch~=1.2 torchvision opencv-python~=3.4
+RUN pip3 install torch~=1.8 torchvision opencv-python~=3.4 timm
 
 # copy inference code
 WORKDIR /opt/MiDaS
@@ -21,8 +21,8 @@ COPY ./midas ./midas
 COPY ./*.py ./
 
 # download model weights so the docker image can be used offline
-RUN curl -OL https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt
-RUN python3 run.py; exit 0
+RUN cd weights && {curl -OL https://github.com/AlexeyAB/MiDaS/releases/download/midas_dpt/dpt_hybrid-midas-501f0c75.pt; cd -; }
+RUN python3 run.py --model_type dpt_hybrid; exit 0
 
 # entrypoint (dont forget to mount input and output directories)
-CMD python3 run.py
+CMD python3 run.py --model_type dpt_hybrid
