@@ -20,7 +20,7 @@ The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be
 ### Changelog
 * [Apr 2021] Released MiDaS v3.0:
     - New models based on [Dense Prediction Transformers](https://arxiv.org/abs/2103.13413) are on average [21% more accurate](#Accuracy) than MiDaS v2.1
-    - Additional models can be found at [here](https://github.com/intel-isl/DPT)
+    - Additional models can be found [here](https://github.com/intel-isl/DPT)
 * [Nov 2020] Released MiDaS v2.1:
 	- New model that was trained on 10 datasets and is on average about [10% more accurate](#Accuracy) than [MiDaS v2.0](https://github.com/intel-isl/MiDaS/releases/tag/v2)
 	- New light-weight model that achieves [real-time performance](https://github.com/intel-isl/MiDaS/tree/master/mobile) on mobile platforms.
