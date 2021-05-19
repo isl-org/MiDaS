@@ -130,7 +130,7 @@ def forward_flex(self, x):
 
     x = self.patch_embed.proj(x).flatten(2).transpose(1, 2)
 
-    if hasattr(self, "dist_token"):
+    if getattr(self, "dist_token", None) is not None:
         cls_tokens = self.cls_token.expand(
             B, -1, -1
         )  # stole cls_tokens impl from Phil Wang, thanks
