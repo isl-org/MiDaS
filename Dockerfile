@@ -14,7 +14,7 @@ RUN apt-get update && apt-get -y install \
 
 # install python dependencies
 RUN pip3 install --upgrade pip
-RUN pip3 install torch~=1.8 torchvision opencv-python~=3.4 timm
+RUN pip3 install torch~=1.8 torchvision opencv-python-headless~=3.4 timm
 
 # copy inference code
 WORKDIR /opt/MiDaS
