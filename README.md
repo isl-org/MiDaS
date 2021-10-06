@@ -18,6 +18,7 @@ The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be
 
 
 ### Changelog
+* [Sep 2021] Integrated to [Huggingface Spaces](https://huggingface.co/spaces) with [Gradio](https://github.com/gradio-app/gradio). See [Gradio Web Demo](https://huggingface.co/spaces/akhaliq/DPT-Large).
 * [Apr 2021] Released MiDaS v3.0:
     - New models based on [Dense Prediction Transformers](https://arxiv.org/abs/2103.13413) are on average [21% more accurate](#Accuracy) than MiDaS v2.1
     - Additional models can be found [here](https://github.com/intel-isl/DPT)
