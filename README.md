@@ -80,7 +80,7 @@ The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be
 3) Run inference:
 
     ```shell
-    docker run --rm --gpus all -v $PWD/input:/opt/MiDaS/input -v $PWD/output:/opt/MiDaS/output midas
+    docker run --rm --gpus all -v $PWD/input:/opt/MiDaS/input -v $PWD/output:/opt/MiDaS/output -v $PWD/weights:/opt/MiDaS/weights midas
     ```
 
    This command passes through all of your NVIDIA GPUs to the container, mounts the
