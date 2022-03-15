@@ -180,7 +180,7 @@ def write_depth(path, depth, bits=1):
     if depth_max - depth_min > np.finfo("float").eps:
         out = max_val * (depth - depth_min) / (depth_max - depth_min)
     else:
-        out = np.zeros(depth.shape, dtype=depth.type)
+        out = np.zeros(depth.shape, dtype=depth.dtype)
 
     if bits == 1:
         cv2.imwrite(path + ".png", out.astype("uint8"))
