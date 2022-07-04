@@ -130,11 +130,13 @@ Zero-shot error (the lower - the better) and speed (FPS):
 
 Please cite our paper if you use this code or any of the models:
 ```
-@article{Ranftl2020,
-	author    = {Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun},
-	title     = {Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer},
-	journal   = {IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)},
-	year      = {2020},
+@ARTICLE {Ranftl2022,
+    author  = "Ren\'{e} Ranftl and Katrin Lasinger and David Hafner and Konrad Schindler and Vladlen Koltun",
+    title   = "Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-Shot Cross-Dataset Transfer",
+    journal = "IEEE Transactions on Pattern Analysis and Machine Intelligence",
+    year    = "2022",
+    volume  = "44",
+    number  = "3"
 }
 ```
 
@@ -144,7 +146,7 @@ If you use a DPT-based model, please also cite:
 @article{Ranftl2021,
 	author    = {Ren\'{e} Ranftl and Alexey Bochkovskiy and Vladlen Koltun},
 	title     = {Vision Transformers for Dense Prediction},
-	journal   = {ArXiv preprint},
+	journal   = {ICCV},
 	year      = {2021},
 }
 ```
