@@ -20,7 +20,7 @@ def DPT_Large(pretrained=True, **kwargs):
 
     if pretrained:
         checkpoint = (
-            "https://github.com/intel-isl/DPT/releases/download/1_0/dpt_large-midas-2f21e586.pt"
+            "https://github.com/isl-org/MiDaS/releases/download/v3/dpt_large-midas-2f21e586.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
             checkpoint, map_location=torch.device('cpu'), progress=True, check_hash=True
@@ -43,7 +43,7 @@ def DPT_Hybrid(pretrained=True, **kwargs):
 
     if pretrained:
         checkpoint = (
-            "https://github.com/intel-isl/DPT/releases/download/1_0/dpt_hybrid-midas-501f0c75.pt"
+            "https://github.com/isl-org/MiDaS/releases/download/v3/dpt_hybrid-midas-501f0c75.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
             checkpoint, map_location=torch.device('cpu'), progress=True, check_hash=True
@@ -62,7 +62,7 @@ def MiDaS(pretrained=True, **kwargs):
 
     if pretrained:
         checkpoint = (
-            "https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt"
+            "https://github.com/isl-org/MiDaS/releases/download/v2_1/model-f6b98070.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
             checkpoint, map_location=torch.device('cpu'), progress=True, check_hash=True
@@ -81,7 +81,7 @@ def MiDaS_small(pretrained=True, **kwargs):
 
     if pretrained:
         checkpoint = (
-            "https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small-70d6b9c8.pt"
+            "https://github.com/isl-org/MiDaS/releases/download/v2_1/model-small-70d6b9c8.pt"
         )
         state_dict = torch.hub.load_state_dict_from_url(
             checkpoint, map_location=torch.device('cpu'), progress=True, check_hash=True

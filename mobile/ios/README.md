@@ -33,7 +33,7 @@ pip install tensorflow
 
 ### Install TensorFlowLiteSwift via Cocoapods
 
-Set required TensorFlowLiteSwift version in the file (`0.0.1-nightly` is recommended): https://github.com/AlexeyAB/midas_tf_ios/blob/main/Podfile#L9
+Set required TensorFlowLiteSwift version in the file (`0.0.1-nightly` is recommended): https://github.com/isl-org/MiDaS/blob/master/mobile/ios/Podfile#L9
 
 Install: brew, ruby, cocoapods
 
@@ -82,7 +82,7 @@ open(model_tflite_name, "wb").write("model.tflite")
 
 ----
 
-Original repository: https://github.com/intel-isl/MiDaS
+Original repository: https://github.com/isl-org/MiDaS
 
 
 ### Examples:
