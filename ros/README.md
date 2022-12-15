@@ -18,14 +18,14 @@ MiDaS is a neural network to compute depth from a single image.
 
 * install ROS Melodic for Ubuntu 17.10 / 18.04:
 ```bash
-wget https://raw.githubusercontent.com/intel-isl/MiDaS/master/ros/additions/install_ros_melodic_ubuntu_17_18.sh
+wget https://raw.githubusercontent.com/isl-org/MiDaS/master/ros/additions/install_ros_melodic_ubuntu_17_18.sh
 ./install_ros_melodic_ubuntu_17_18.sh
 ```
 
 or Noetic for Ubuntu 20.04: 
 
 ```bash
-wget https://raw.githubusercontent.com/intel-isl/MiDaS/master/ros/additions/install_ros_noetic_ubuntu_20.sh
+wget https://raw.githubusercontent.com/isl-org/MiDaS/master/ros/additions/install_ros_noetic_ubuntu_20.sh
 ./install_ros_noetic_ubuntu_20.sh
 ```
 
@@ -61,7 +61,7 @@ source ~/.bashrc
 cd ~/
 mkdir catkin_ws
 cd catkin_ws
-git clone https://github.com/intel-isl/MiDaS
+git clone https://github.com/isl-org/MiDaS
 mkdir src
 cp -r MiDaS/ros/* src
 

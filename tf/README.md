@@ -11,8 +11,8 @@
 
 ### Run inference on TensorFlow-model by using TensorFlow
 
-1) Download the model weights [model-f6b98070.pb](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pb) 
-and [model-small.pb](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small.pb) and place the
+1) Download the model weights [model-f6b98070.pb](https://github.com/isl-org/MiDaS/releases/download/v2_1/model-f6b98070.pb) 
+and [model-small.pb](https://github.com/isl-org/MiDaS/releases/download/v2_1/model-small.pb) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -47,8 +47,8 @@ pip install -I grpcio tensorflow==2.3.0 tensorflow-addons==0.11.2 numpy==1.18.0
 
 ### Run inference on ONNX-model by using ONNX-Runtime
 
-1) Download the model weights [model-f6b98070.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.onnx) 
-and [model-small.onnx](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-small.onnx) and place the
+1) Download the model weights [model-f6b98070.onnx](https://github.com/isl-org/MiDaS/releases/download/v2_1/model-f6b98070.onnx) 
+and [model-small.onnx](https://github.com/isl-org/MiDaS/releases/download/v2_1/model-small.onnx) and place the
 file in the `/tf/` folder.
 
 2) Set up dependencies: 
@@ -87,7 +87,7 @@ pip install onnxruntime==1.5.2
 
 ### Make ONNX model from downloaded Pytorch model file
 
-1) Download the model weights [model-f6b98070.pt](https://github.com/intel-isl/MiDaS/releases/download/v2_1/model-f6b98070.pt) and place the
+1) Download the model weights [model-f6b98070.pt](https://github.com/isl-org/MiDaS/releases/download/v2_1/model-f6b98070.pt) and place the
 file in the root folder.
 
 2) Set up dependencies: 

@@ -18,4 +18,4 @@ To use another model, you should convert it to `model_opt.tflite` and place it t
 
 ----
 
-Original repository: https://github.com/intel-isl/MiDaS
+Original repository: https://github.com/isl-org/MiDaS
