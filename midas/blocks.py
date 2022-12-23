@@ -1,32 +1,32 @@
 import torch
 import torch.nn as nn
 
-from .new_backbones.beit import (
+from .backbones.beit import (
     _make_pretrained_beitl16_512,
     _make_pretrained_beitl16_384,
     _make_pretrained_beitb16_384,
     forward_beit,
 )
-from .new_backbones.swin_common import (
+from .backbones.swin_common import (
     forward_swin,
 )
-from .new_backbones.swin2 import (
+from .backbones.swin2 import (
     _make_pretrained_swin2l24_384,
     _make_pretrained_swin2b24_384,
     _make_pretrained_swin2t16_256,
 )
-from .new_backbones.swin import (
+from .backbones.swin import (
     _make_pretrained_swinl12_384,
 )
-from .new_backbones.next_vit import (
+from .backbones.next_vit import (
     _make_pretrained_next_vit_large_6m,
     forward_next_vit,
 )
-from .new_backbones.levit import (
+from .backbones.levit import (
     _make_pretrained_levit_384,
     forward_levit,
 )
-from .vit import (
+from .backbones.vit import (
     _make_pretrained_vitb_rn50_384,
     _make_pretrained_vitl16_384,
     _make_pretrained_vitb16_384,

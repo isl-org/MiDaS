@@ -12,7 +12,7 @@ from .blocks import (
     forward_levit,
     forward_vit,
 )
-from .new_backbones.levit import stem_b4_transpose
+from .backbones.levit import stem_b4_transpose
 from timm.models.layers import get_act_layer
 
 
