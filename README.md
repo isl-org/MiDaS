@@ -116,7 +116,7 @@ Zero-shot error (the lower - the better) and speed (FPS):
 |---|---|---|---|---|---|---|---|
 | **Small models:** | | | | | | | iPhone 11 |
 | MiDaS v2 small | **0.1248** | 0.1550 | **0.3300** | **21.81** | 15.73 | 17.00 | 0.6 |
-| MiDaS v2.1 small [URL]() | 0.1344 | **0.1344** | 0.3370 | 29.27 | **13.43** | **14.53** | 30 |
+| MiDaS v2.1 small [URL](https://github.com/isl-org/MiDaS/releases/download/v2_1/model-small-70d6b9c8.pt) | 0.1344 | **0.1344** | 0.3370 | 29.27 | **13.43** | **14.53** | 30 |
 | | | | | | | |
 | **Big models:** | | | | | | | GPU RTX 3090 |
 | MiDaS v2 large [URL](https://github.com/isl-org/MiDaS/releases/download/v2/model-f46da743.pt) | 0.1246 | 0.1290 | 0.3270 | 23.90 | 9.55 | 14.29 | 51 |
