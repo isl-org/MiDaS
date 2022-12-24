@@ -14,26 +14,26 @@ and our [preprint](https://arxiv.org/abs/2103.13413):
 
 MiDaS was trained on up to 12 datasets (ReDWeb, DIML, Movies, MegaDepth, WSVD, TartanAir, HRWSI, ApolloScape, BlendedMVS, IRS, KITTI, NYU Depth V2) with
 multi-objective optimization. 
-The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be found [here](https://github.com/intel-isl/MiDaS/releases/tag/v2).
+The original model that was trained on 5 datasets  (`MIX 5` in the paper) can be found [here](https://github.com/isl-org/MiDaS/releases/tag/v2).
+The figure below shows an overview of the different MiDaS models; the bubble size scales with number of parameters.
 
 ![](figures/Improvement_vs_FPS.png)
-Bubble size scales with number of parameters
 
 ### Setup 
 
-1) Pick one or more models and download corresponding weights to the `weights` folder:
+1) Pick one or more models and download the corresponding weights to the `weights` folder:
 
 MiDaS 3.1
 - For highest quality: [dpt_beit_large_512](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_beit_large_512.pt)
-- For moderately less quality, but better speed-performance tradeoff: [dpt_swin2_large_384](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_large_384.pt)
-- For embedded devices: [dpt_swin2_tiny_256](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_tiny_256.pt), [dpt_levit_224](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_levit_224.pt), [midas_v21_small_256](https://github.com/isl-org/MiDaS/releases/download/v3_1/midas_v21_small_256.pt) 
-- For Intel CPUs and no available GPU, OpenVINO may be used for the small legacy model: openvino_midas_v21_small [.xml](https://github.com/isl-org/MiDaS/releases/download/v3_1/openvino_midas_v21_small_256.xml), [.bin](https://github.com/isl-org/MiDaS/releases/download/v3_1/openvino_midas_v21_small_256.bin)
+- For moderately less quality, but better speed-performance trade-off: [dpt_swin2_large_384](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_large_384.pt)
+- For embedded devices: [dpt_swin2_tiny_256](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_tiny_256.pt), [dpt_levit_224](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_levit_224.pt)
+- For inference on Intel CPUs, OpenVINO may be used for the small legacy model: openvino_midas_v21_small [.xml](https://github.com/isl-org/MiDaS/releases/download/v3_1/openvino_midas_v21_small_256.xml), [.bin](https://github.com/isl-org/MiDaS/releases/download/v3_1/openvino_midas_v21_small_256.bin)
 
-MiDaS 3.0: Previous release models [dpt_large_384](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_large_384.pt) or [dpt_hybrid_384](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_hybrid_384.pt)
+MiDaS 3.0: Legacy transformer models [dpt_large_384](https://github.com/isl-org/MiDaS/releases/download/v3/dpt_large_384.pt) and [dpt_hybrid_384](https://github.com/isl-org/MiDaS/releases/download/v3/dpt_hybrid_384.pt)
 
-MiDaS 2.1: Large legacy convolutional model [midas_v21_384](https://github.com/isl-org/MiDaS/releases/download/v3_1/midas_v21_small_256.pt)
+MiDaS 2.1: Legacy convolutional models [midas_v21_384](https://github.com/isl-org/MiDaS/releases/download/v2_1/midas_v21_384.pt) and [midas_v21_small_256](https://github.com/isl-org/MiDaS/releases/download/v2_1/midas_v21_small_256.pt) 
 
-2) Set up dependencies: 
+1) Set up dependencies: 
 
     ```shell
     conda env create -f environment.yaml
@@ -120,18 +120,18 @@ The pretrained model is also available on [PyTorch Hub](https://pytorch.org/hub/
 
 #### via TensorFlow or ONNX
 
-See [README](https://github.com/intel-isl/MiDaS/tree/master/tf) in the `tf` subdirectory.
+See [README](https://github.com/isl-org/MiDaS/tree/master/tf) in the `tf` subdirectory.
 
 Currently only supports MiDaS v2.1. 
 
 
 #### via Mobile (iOS / Android)
 
-See [README](https://github.com/intel-isl/MiDaS/tree/master/mobile) in the `mobile` subdirectory.
+See [README](https://github.com/isl-org/MiDaS/tree/master/mobile) in the `mobile` subdirectory.
 
 #### via ROS1 (Robot Operating System)
 
-See [README](https://github.com/intel-isl/MiDaS/tree/master/ros) in the `ros` subdirectory.
+See [README](https://github.com/isl-org/MiDaS/tree/master/ros) in the `ros` subdirectory.
 
 Currently only supports MiDaS v2.1. DPT-based models to be added. 
 
@@ -159,9 +159,9 @@ the numbers in the model names. The table also shows the **number of parameters*
 | [v3.1 BEiT<sub>L-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_beit_large_384.pt)                                                                                     |                   0.1239 |                   **0.0667** |                        0.2545 |                     7.17 |                    9.84* |                    2.21* |                     $\color{green}{\textsf{17}}$ |                   344 |                        13 |
 | [v3.1 Next-ViT<sub>L-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_next_vit_large_384.pt)                                                                                 |               **0.1031** |                       0.0954 |                        0.2295 |                     9.21 |                    6.89* |                    3.47* |                     $\color{green}{\textsf{16}}$ |                **72** |                        30 |
 | [v3.1 BEiT<sub>B-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_beit_base_384.pt)                                                                                     |                   0.1159 |                       0.0967 |                        0.2901 |                     9.88 |                   26.60* |                    3.91* |                    $\color{green}{\textsf{-31}}$ |                   112 |                        31 |
-| [v3.0 DPT<sub>L-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_large_384.pt)        |                   0.1082 |                       0.0888 |                        0.2697 |                     9.97 |                     8.46 |                     8.32 |                      $\color{green}{\textsf{0}}$ |                   344 |                    **61** |
-| [v3.0 DPT<sub>H-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_hybrid_384.pt)       |                   0.1106 |                       0.0934 |                        0.2741 |                    10.89 |                    11.56 |                     8.69 |                    $\color{green}{\textsf{-10}}$ |                   123 |                        50 |
-| [v2.1 Large<sub>384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/midas_v21_384.pt)       |                   0.1295 |                       0.1155 |                        0.3285 |                    12.51 |                    16.08 |                     8.71 |                    $\color{green}{\textsf{-32}}$ |                   105 |                        47 |
+| [v3.0 DPT<sub>L-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3/dpt_large_384.pt)        |                   0.1082 |                       0.0888 |                        0.2697 |                     9.97 |                     8.46 |                     8.32 |                      $\color{green}{\textsf{0}}$ |                   344 |                    **61** |
+| [v3.0 DPT<sub>H-384</sub>](https://github.com/isl-org/MiDaS/releases/download/v3/dpt_hybrid_384.pt)       |                   0.1106 |                       0.0934 |                        0.2741 |                    10.89 |                    11.56 |                     8.69 |                    $\color{green}{\textsf{-10}}$ |                   123 |                        50 |
+| [v2.1 Large<sub>384</sub>](https://github.com/isl-org/MiDaS/releases/download/v2_1/midas_v21_384.pt)       |                   0.1295 |                       0.1155 |                        0.3285 |                    12.51 |                    16.08 |                     8.71 |                    $\color{green}{\textsf{-32}}$ |                   105 |                        47 |
 |                                                                                                                       |                          |                              |                               |                          |                          |                          |                                                  |                       |                           |
 | **Inference height 256**                                                                                              |                          |                              |                               |                          |                          |                          |                                                  |                       |                           |
 | [v3.1 Swin2<sub>T-256</sub>](https://github.com/isl-org/MiDaS/releases/download/v3_1/dpt_swin2_tiny_256.pt)$\tiny{\square}$                                                                    |               **0.1211** |                   **0.1106** |                    **0.2868** |                **13.43** |               **10.13*** |                **5.55*** |                    $\color{green}{\textsf{-11}}$ |                    42 |                        64 |
@@ -214,15 +214,15 @@ Speed: 22 FPS
 * [Sep 2021] Integrated to [Huggingface Spaces](https://huggingface.co/spaces) with [Gradio](https://github.com/gradio-app/gradio). See [Gradio Web Demo](https://huggingface.co/spaces/akhaliq/DPT-Large).
 * [Apr 2021] Released MiDaS v3.0:
     - New models based on [Dense Prediction Transformers](https://arxiv.org/abs/2103.13413) are on average [21% more accurate](#Accuracy) than MiDaS v2.1
-    - Additional models can be found [here](https://github.com/intel-isl/DPT)
+    - Additional models can be found [here](https://github.com/isl-org/DPT)
 * [Nov 2020] Released MiDaS v2.1:
-	- New model that was trained on 10 datasets and is on average about [10% more accurate](#Accuracy) than [MiDaS v2.0](https://github.com/intel-isl/MiDaS/releases/tag/v2)
-	- New light-weight model that achieves [real-time performance](https://github.com/intel-isl/MiDaS/tree/master/mobile) on mobile platforms.
-	- Sample applications for [iOS](https://github.com/intel-isl/MiDaS/tree/master/mobile/ios) and [Android](https://github.com/intel-isl/MiDaS/tree/master/mobile/android)
-	- [ROS package](https://github.com/intel-isl/MiDaS/tree/master/ros) for easy deployment on robots
+	- New model that was trained on 10 datasets and is on average about [10% more accurate](#Accuracy) than [MiDaS v2.0](https://github.com/isl-org/MiDaS/releases/tag/v2)
+	- New light-weight model that achieves [real-time performance](https://github.com/isl-org/MiDaS/tree/master/mobile) on mobile platforms.
+	- Sample applications for [iOS](https://github.com/isl-org/MiDaS/tree/master/mobile/ios) and [Android](https://github.com/isl-org/MiDaS/tree/master/mobile/android)
+	- [ROS package](https://github.com/isl-org/MiDaS/tree/master/ros) for easy deployment on robots
 * [Jul 2020] Added TensorFlow and ONNX code. Added [online demo](http://35.202.76.57/).
 * [Dec 2019] Released new version of MiDaS - the new model is significantly more accurate and robust
-* [Jul 2019] Initial release of MiDaS ([Link](https://github.com/intel-isl/MiDaS/releases/tag/v1))
+* [Jul 2019] Initial release of MiDaS ([Link](https://github.com/isl-org/MiDaS/releases/tag/v1))
 
 ### Citation
 
