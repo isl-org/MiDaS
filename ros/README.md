@@ -90,15 +90,15 @@ cp src/additions/do_catkin_make.sh ./do_catkin_make.sh
 
 ### Accuracy
 
-* Old small model - ResNet50 default-decoder 384x384
-* New small model - EfficientNet-Lite3 small-decoder 256x256
+* MiDaS v2 small - ResNet50 default-decoder 384x384
+* MiDaS v2.1 small - EfficientNet-Lite3 small-decoder 256x256
 
 **Zero-shot error** (the lower - the better):
 
 | Model |  DIW WHDR | Eth3d AbsRel | Sintel AbsRel | Kitti δ>1.25 | NyuDepthV2 δ>1.25 | TUM δ>1.25 |
 |---|---|---|---|---|---|---|
-| Old small model 384x384 | **0.1248** | 0.1550 | **0.3300** | **21.81** | 15.73 | 17.00 |
-| New small model 256x256 | 0.1344 | **0.1344** | 0.3370 | 29.27 | **13.43** | **14.53** |
+| MiDaS v2 small 384x384 | **0.1248** | 0.1550 | **0.3300** | **21.81** | 15.73 | 17.00 |
+| MiDaS v2.1 small 256x256 | 0.1344 | **0.1344** | 0.3370 | 29.27 | **13.43** | **14.53** |
 | Relative improvement, % | -8 % | **+13 %** | -2 % | -34 % | **+15 %** | **+15 %** |
 
 None of Train/Valid/Test subsets of datasets (DIW, Eth3d, Sintel, Kitti, NyuDepthV2, TUM) were not involved in Training or Fine Tuning.
@@ -109,8 +109,8 @@ Inference speed excluding pre and post processing, batch=1, **Frames Per Second*
 
 | Model | Jetson Nano, FPS | RTX 2080Ti, FPS |
 |---|---|---|
-| Old small model 384x384 | 1.6 | 117 |
-| New small model 256x256 | 8.1 | 232 |
+| MiDaS v2 small 384x384 | 1.6 | 117 |
+| MiDaS v2.1 small 256x256 | 8.1 | 232 |
 | SpeedUp, X times | **5x** | **2x** |
 
 ### Citation
