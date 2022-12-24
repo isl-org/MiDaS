@@ -1,15 +1,102 @@
 import torch
 import torch.nn as nn
 
-from .vit import (
+from .backbones.beit import (
+    _make_pretrained_beitl16_512,
+    _make_pretrained_beitl16_384,
+    _make_pretrained_beitb16_384,
+    forward_beit,
+)
+from .backbones.swin_common import (
+    forward_swin,
+)
+from .backbones.swin2 import (
+    _make_pretrained_swin2l24_384,
+    _make_pretrained_swin2b24_384,
+    _make_pretrained_swin2t16_256,
+)
+from .backbones.swin import (
+    _make_pretrained_swinl12_384,
+)
+from .backbones.next_vit import (
+    _make_pretrained_next_vit_large_6m,
+    forward_next_vit,
+)
+from .backbones.levit import (
+    _make_pretrained_levit_384,
+    forward_levit,
+)
+from .backbones.vit import (
     _make_pretrained_vitb_rn50_384,
     _make_pretrained_vitl16_384,
     _make_pretrained_vitb16_384,
     forward_vit,
 )
 
-def _make_encoder(backbone, features, use_pretrained, groups=1, expand=False, exportable=True, hooks=None, use_vit_only=False, use_readout="ignore",):
-    if backbone == "vitl16_384":
+def _make_encoder(backbone, features, use_pretrained, groups=1, expand=False, exportable=True, hooks=None,
+                  use_vit_only=False, use_readout="ignore", in_features=[96, 256, 512, 1024]):
+    if backbone == "beitl16_512":
+        pretrained = _make_pretrained_beitl16_512(
+            use_pretrained, hooks=hooks, use_readout=use_readout
+        )
+        scratch = _make_scratch(
+            [256, 512, 1024, 1024], features, groups=groups, expand=expand
+        )  # BEiT_512-L (backbone)
+    elif backbone == "beitl16_384":
+        pretrained = _make_pretrained_beitl16_384(
+            use_pretrained, hooks=hooks, use_readout=use_readout
+        )
+        scratch = _make_scratch(
+            [256, 512, 1024, 1024], features, groups=groups, expand=expand
+        )  # BEiT_384-L (backbone)
+    elif backbone == "beitb16_384":
+        pretrained = _make_pretrained_beitb16_384(
+            use_pretrained, hooks=hooks, use_readout=use_readout
+        )
+        scratch = _make_scratch(
+            [96, 192, 384, 768], features, groups=groups, expand=expand
+        )  # BEiT_384-B (backbone)
+    elif backbone == "swin2l24_384":
+        pretrained = _make_pretrained_swin2l24_384(
+            use_pretrained, hooks=hooks
+        )
+        scratch = _make_scratch(
+            [192, 384, 768, 1536], features, groups=groups, expand=expand
+        )  # Swin2-L/12to24 (backbone)
+    elif backbone == "swin2b24_384":
+        pretrained = _make_pretrained_swin2b24_384(
+            use_pretrained, hooks=hooks
+        )
+        scratch = _make_scratch(
+            [128, 256, 512, 1024], features, groups=groups, expand=expand
+        )  # Swin2-B/12to24 (backbone)
+    elif backbone == "swin2t16_256":
+        pretrained = _make_pretrained_swin2t16_256(
+            use_pretrained, hooks=hooks
+        )
+        scratch = _make_scratch(
+            [96, 192, 384, 768], features, groups=groups, expand=expand
+        )  # Swin2-T/16 (backbone)
+    elif backbone == "swinl12_384":
+        pretrained = _make_pretrained_swinl12_384(
+            use_pretrained, hooks=hooks
+        )
+        scratch = _make_scratch(
+            [192, 384, 768, 1536], features, groups=groups, expand=expand
+        )  # Swin-L/12 (backbone)
+    elif backbone == "next_vit_large_6m":
+        pretrained = _make_pretrained_next_vit_large_6m(hooks=hooks)
+        scratch = _make_scratch(
+            in_features, features, groups=groups, expand=expand
+        )  # Next-ViT-L on ImageNet-1K-6M (backbone)
+    elif backbone == "levit_384":
+        pretrained = _make_pretrained_levit_384(
+            use_pretrained, hooks=hooks
+        )
+        scratch = _make_scratch(
+            [384, 512, 768], features, groups=groups, expand=expand
+        )  # LeViT 384 (backbone)
+    elif backbone == "vitl16_384":
         pretrained = _make_pretrained_vitl16_384(
             use_pretrained, hooks=hooks, use_readout=use_readout
         )
@@ -35,10 +122,10 @@ def _make_encoder(backbone, features, use_pretrained, groups=1, expand=False, ex
         )  # ViT-B/16 - 84.6% Top1 (backbone)
     elif backbone == "resnext101_wsl":
         pretrained = _make_pretrained_resnext101_wsl(use_pretrained)
-        scratch = _make_scratch([256, 512, 1024, 2048], features, groups=groups, expand=expand)     # efficientnet_lite3  
+        scratch = _make_scratch([256, 512, 1024, 2048], features, groups=groups, expand=expand)  # efficientnet_lite3
     elif backbone == "efficientnet_lite3":
         pretrained = _make_pretrained_efficientnet_lite3(use_pretrained, exportable=exportable)
-        scratch = _make_scratch([32, 48, 136, 384], features, groups=groups, expand=expand)  # efficientnet_lite3     
+        scratch = _make_scratch([32, 48, 136, 384], features, groups=groups, expand=expand)  # efficientnet_lite3
     else:
         print(f"Backbone '{backbone}' not implemented")
         assert False
@@ -52,12 +139,15 @@ def _make_scratch(in_shape, out_shape, groups=1, expand=False):
     out_shape1 = out_shape
     out_shape2 = out_shape
     out_shape3 = out_shape
-    out_shape4 = out_shape
-    if expand==True:
+    if len(in_shape) >= 4:
+        out_shape4 = out_shape
+
+    if expand:
         out_shape1 = out_shape
         out_shape2 = out_shape*2
         out_shape3 = out_shape*4
-        out_shape4 = out_shape*8
+        if len(in_shape) >= 4:
+            out_shape4 = out_shape*8
 
     scratch.layer1_rn = nn.Conv2d(
         in_shape[0], out_shape1, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
@@ -68,9 +158,10 @@ def _make_scratch(in_shape, out_shape, groups=1, expand=False):
     scratch.layer3_rn = nn.Conv2d(
         in_shape[2], out_shape3, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
     )
-    scratch.layer4_rn = nn.Conv2d(
-        in_shape[3], out_shape4, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
-    )
+    if len(in_shape) >= 4:
+        scratch.layer4_rn = nn.Conv2d(
+            in_shape[3], out_shape4, kernel_size=3, stride=1, padding=1, bias=False, groups=groups
+        )
 
     return scratch
 
@@ -292,7 +383,7 @@ class FeatureFusionBlock_custom(nn.Module):
     """Feature fusion block.
     """
 
-    def __init__(self, features, activation, deconv=False, bn=False, expand=False, align_corners=True):
+    def __init__(self, features, activation, deconv=False, bn=False, expand=False, align_corners=True, size=None):
         """Init.
 
         Args:
@@ -317,7 +408,9 @@ class FeatureFusionBlock_custom(nn.Module):
         
         self.skip_add = nn.quantized.FloatFunctional()
 
-    def forward(self, *xs):
+        self.size=size
+
+    def forward(self, *xs, size=None):
         """Forward pass.
 
         Returns:
@@ -332,8 +425,15 @@ class FeatureFusionBlock_custom(nn.Module):
 
         output = self.resConfUnit2(output)
 
+        if (size is None) and (self.size is None):
+            modifier = {"scale_factor": 2}
+        elif size is None:
+            modifier = {"size": self.size}
+        else:
+            modifier = {"size": size}
+
         output = nn.functional.interpolate(
-            output, scale_factor=2, mode="bilinear", align_corners=self.align_corners
+            output, **modifier, mode="bilinear", align_corners=self.align_corners
         )
 
         output = self.out_conv(output)

@@ -22,7 +22,7 @@ COPY ./midas ./midas
 COPY ./*.py ./
 
 # download model weights so the docker image can be used offline
-RUN cd weights && {curl -OL https://github.com/isl-org/MiDaS/releases/download/v3/dpt_hybrid-midas-501f0c75.pt; cd -; }
+RUN cd weights && {curl -OL https://github.com/isl-org/MiDaS/releases/download/v3/dpt_hybrid_384.pt; cd -; }
 RUN python3 run.py --model_type dpt_hybrid; exit 0
 
 # entrypoint (dont forget to mount input and output directories)
