@@ -42,10 +42,10 @@ MiDaS 2.1: Legacy convolutional models [midas_v21_384](https://github.com/isl-or
 
 #### optional
 
-For the Next-ViT model, install
+For the Next-ViT model, execute
 
 ```shell
-./install_next_vit.sh
+git submodule add https://github.com/isl-org/Next-ViT midas/external/next_vit
 ```
 
 For the OpenVINO model, install
