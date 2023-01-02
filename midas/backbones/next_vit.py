@@ -5,9 +5,7 @@ import torch.nn as nn
 from pathlib import Path
 from .utils import activations, forward_default, get_activation
 
-file = open("./externals/Next_ViT/classification/nextvit.py", "r")
-source_code = file.read().replace(" utils", " externals.Next_ViT.classification.utils")
-exec(source_code)
+from ..external.next_vit.classification.nextvit import *
 
 
 def forward_next_vit(pretrained, x):

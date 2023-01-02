@@ -18,10 +18,6 @@ from .backbones.swin2 import (
 from .backbones.swin import (
     _make_pretrained_swinl12_384,
 )
-from .backbones.next_vit import (
-    _make_pretrained_next_vit_large_6m,
-    forward_next_vit,
-)
 from .backbones.levit import (
     _make_pretrained_levit_384,
     forward_levit,
@@ -85,6 +81,7 @@ def _make_encoder(backbone, features, use_pretrained, groups=1, expand=False, ex
             [192, 384, 768, 1536], features, groups=groups, expand=expand
         )  # Swin-L/12 (backbone)
     elif backbone == "next_vit_large_6m":
+        from .backbones.next_vit import _make_pretrained_next_vit_large_6m
         pretrained = _make_pretrained_next_vit_large_6m(hooks=hooks)
         scratch = _make_scratch(
             in_features, features, groups=groups, expand=expand
