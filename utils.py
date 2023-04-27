@@ -65,7 +65,7 @@ def write_pfm(path, image, scale=1):
         scale (int, optional): Scale. Defaults to 1.
     """
 
-    with open(path, "wb") as file:
+    with open(path.encode('utf-8'), "wb") as file:
         color = None
 
         if image.dtype.name != "float32":
@@ -163,6 +163,7 @@ def resize_depth(depth, width, height):
 
     return depth_resized
 
+
 def write_depth(path, depth, grayscale, bits=1):
     """Write depth map to png file.
 
@@ -175,7 +176,7 @@ def write_depth(path, depth, grayscale, bits=1):
         bits = 1
 
     if not np.isfinite(depth).all():
-        depth=np.nan_to_num(depth, nan=0.0, posinf=0.0, neginf=0.0)
+        depth = np.nan_to_num(depth, nan=0.0, posinf=0.0, neginf=0.0)
         print("WARNING: Non-finite depth values present")
 
     depth_min = depth.min()

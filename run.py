@@ -14,6 +14,8 @@ from imutils.video import VideoStream
 from midas.model_loader import default_models, load_model
 
 first_execution = True
+
+
 def process(device, model, model_type, image, input_size, target_size, optimize, use_camera):
     """
     Run the inference and interpolate.
@@ -142,8 +144,9 @@ def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", op
         if output_path is None:
             print("Warning: No output path specified. Images will be processed but not shown or stored anywhere.")
         for index, image_name in enumerate(image_names):
+            image_name = image_name.encode('utf-8', 'surrogateescape').decode('utf-8')
 
-            print("  Processing {} ({}/{})".format(image_name, index + 1, num_images))
+            print("  Processing {} ({}/{})".format(image_name.encode('utf-8'), index + 1, num_images))
 
             # input
             original_image_rgb = utils.read_image(image_name)  # in [0, 1]
@@ -263,7 +266,6 @@ if __name__ == "__main__":
                         )
 
     args = parser.parse_args()
-
 
     if args.model_weights is None:
         args.model_weights = default_models[args.model_type]
