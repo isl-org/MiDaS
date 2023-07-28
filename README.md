@@ -11,6 +11,7 @@ and our [preprint](https://arxiv.org/abs/2103.13413):
 > Vision Transformers for Dense Prediction  
 > René Ranftl, Alexey Bochkovskiy, Vladlen Koltun
 
+For the latest release MiDaS 3.1, a [technical report](https://arxiv.org/pdf/2307.14460.pdf) and [video](https://www.youtube.com/watch?v=UjaeNNFf9sE&t=3s) are available.
 
 MiDaS was trained on up to 12 datasets (ReDWeb, DIML, Movies, MegaDepth, WSVD, TartanAir, HRWSI, ApolloScape, BlendedMVS, IRS, KITTI, NYU Depth V2) with
 multi-objective optimization. 
@@ -204,9 +205,16 @@ Test configuration
 
 Speed: 22 FPS
 
+### Applications
+
+MiDaS is used in the following other projects from Intel Labs:
+
+- [ZoeDepth](https://arxiv.org/pdf/2302.12288.pdf) (code available [here](https://github.com/isl-org/ZoeDepth)): MiDaS computes the relative depth map given an image. For metric depth estimation, ZoeDepth can be used, which combines MiDaS with a metric depth binning module appended to the decoder.
+- [LDM3D](https://arxiv.org/pdf/2305.10853.pdf) (Hugging Face model available [here](https://huggingface.co/Intel/ldm3d-4c)): LDM3D is an extension of vanilla stable diffusion designed to generate joint image and depth data from a text prompt. The depth maps used for supervision when training LDM3D have been computed using MiDaS.
+
 ### Changelog
 
-* [Dec 2022] Released MiDaS v3.1:
+* [Dec 2022] Released [MiDaS v3.1](https://arxiv.org/pdf/2307.14460.pdf):
     - New models based on 5 different types of transformers ([BEiT](https://arxiv.org/pdf/2106.08254.pdf), [Swin2](https://arxiv.org/pdf/2111.09883.pdf), [Swin](https://arxiv.org/pdf/2103.14030.pdf), [Next-ViT](https://arxiv.org/pdf/2207.05501.pdf), [LeViT](https://arxiv.org/pdf/2104.01136.pdf))
     - Training datasets extended from 10 to 12, including also KITTI and NYU Depth V2 using [BTS](https://github.com/cleinc/bts) split
     - Best model, BEiT<sub>Large 512</sub>, with resolution 512x512, is on average about [28% more accurate](#Accuracy) than MiDaS v3.0
@@ -246,6 +254,39 @@ If you use a DPT-based model, please also cite:
 	title     = {Vision Transformers for Dense Prediction},
 	journal   = {ICCV},
 	year      = {2021},
+}
+```
+
+Please cite the technical report for MiDaS 3.1 models:
+
+```
+@article{birkl2023midas,
+      title={MiDaS v3.1 -- A Model Zoo for Robust Monocular Relative Depth Estimation},
+      author={Reiner Birkl and Diana Wofk and Matthias M{\"u}ller},
+      journal={arXiv preprint arXiv:2307.14460},
+      year={2023}
+}
+```
+
+For ZoeDepth, please use
+
+```
+@article{bhat2023zoedepth,
+  title={Zoedepth: Zero-shot transfer by combining relative and metric depth},
+  author={Bhat, Shariq Farooq and Birkl, Reiner and Wofk, Diana and Wonka, Peter and M{\"u}ller, Matthias},
+  journal={arXiv preprint arXiv:2302.12288},
+  year={2023}
+}
+```
+
+and for LDM3D
+
+```
+@article{stan2023ldm3d,
+  title={LDM3D: Latent Diffusion Model for 3D},
+  author={Stan, Gabriela Ben Melech and Wofk, Diana and Fox, Scottie and Redden, Alex and Saxton, Will and Yu, Jean and Aflalo, Estelle and Tseng, Shao-Yen and Nonato, Fabio and Muller, Matthias and others},
+  journal={arXiv preprint arXiv:2305.10853},
+  year={2023}
 }
 ```
 
