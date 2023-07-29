@@ -1,0 +1,12 @@
+entrypoint: python runway_model.py
+python: 3.6
+cuda: 10
+spec:
+  gpu: True
+  cpu: False
+build_steps:
+  - apt-get update
+  - apt-get install -y libsm6 libxext6 libxrender-dev
+  - apt-get install ffmpeg libsm6 libxext6  -y
+  - pip3 install runway-python torch~=1.2 torchvision opencv-python~=3.4
+  - python download_checkpoint.py
