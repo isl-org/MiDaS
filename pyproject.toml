@@ -1,0 +1,31 @@
+# Copyright (c) 2023 Synthesia Limited - All Rights Reserved
+#
+# Unauthorized copying of this file, via any medium is strictly prohibited.
+# Proprietary and confidential.
+
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "midas"
+version = "3.1"
+description = """
+Code for robust monocular depth estimation described in \"Ranftl et. al., Towards Robust Monocular Depth Estimation:
+Mixing Datasets for Zero-shot Cross-dataset Transfer, TPAMI 2022\".
+"""
+readme = "README.md"
+dependencies = [
+    "torch==1.13",
+    "numpy==1.23.4",
+    "torchvision==0.14.0",
+    "opencv-python==4.6.0.66",
+    "imutils==0.5.4",
+    "timm==0.6.12",
+    "einops==0.6.0"
+]
+
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["midas"]
