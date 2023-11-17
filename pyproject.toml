@@ -7,6 +7,9 @@
 requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [project]
 name = "midas"
 version = "3.1"
@@ -15,6 +18,8 @@ Code for robust monocular depth estimation described in \"Ranftl et. al., Toward
 Mixing Datasets for Zero-shot Cross-dataset Transfer, TPAMI 2022\".
 """
 readme = "README.md"
+requires-python = ">=3.10"
+
 dependencies = [
     "torch==1.13",
     "numpy==1.23.4",
@@ -25,7 +30,5 @@ dependencies = [
     "einops==0.6.0"
 ]
 
-requires-python = ">=3.10"
-
-[tool.setuptools]
-packages = ["midas"]
+[project.optional-dependencies]
+dev = ["pytest"]

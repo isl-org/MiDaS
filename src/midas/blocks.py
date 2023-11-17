@@ -1,28 +1,28 @@
 import torch
 import torch.nn as nn
 
-from .backbones.beit import (
+from midas.backbones.beit import (
     _make_pretrained_beitl16_512,
     _make_pretrained_beitl16_384,
     _make_pretrained_beitb16_384,
     forward_beit,
 )
-from .backbones.swin_common import (
+from midas.backbones.swin_common import (
     forward_swin,
 )
-from .backbones.swin2 import (
+from midas.backbones.swin2 import (
     _make_pretrained_swin2l24_384,
     _make_pretrained_swin2b24_384,
     _make_pretrained_swin2t16_256,
 )
-from .backbones.swin import (
+from midas.backbones.swin import (
     _make_pretrained_swinl12_384,
 )
-from .backbones.levit import (
+from midas.backbones.levit import (
     _make_pretrained_levit_384,
     forward_levit,
 )
-from .backbones.vit import (
+from midas.backbones.vit import (
     _make_pretrained_vitb_rn50_384,
     _make_pretrained_vitl16_384,
     _make_pretrained_vitb16_384,
@@ -81,7 +81,7 @@ def _make_encoder(backbone, features, use_pretrained, groups=1, expand=False, ex
             [192, 384, 768, 1536], features, groups=groups, expand=expand
         )  # Swin-L/12 (backbone)
     elif backbone == "next_vit_large_6m":
-        from .backbones.next_vit import _make_pretrained_next_vit_large_6m
+        from midas.backbones.next_vit import _make_pretrained_next_vit_large_6m
         pretrained = _make_pretrained_next_vit_large_6m(hooks=hooks)
         scratch = _make_scratch(
             in_features, features, groups=groups, expand=expand
@@ -126,7 +126,7 @@ def _make_encoder(backbone, features, use_pretrained, groups=1, expand=False, ex
     else:
         print(f"Backbone '{backbone}' not implemented")
         assert False
-        
+
     return pretrained, scratch
 
 
@@ -184,7 +184,7 @@ def _make_efficientnet_backbone(effnet):
     pretrained.layer4 = nn.Sequential(*effnet.blocks[5:9])
 
     return pretrained
-    
+
 
 def _make_resnet_backbone(resnet):
     pretrained = nn.Module()
@@ -335,7 +335,7 @@ class ResidualConvUnit_custom(nn.Module):
         self.conv1 = nn.Conv2d(
             features, features, kernel_size=3, stride=1, padding=1, bias=True, groups=self.groups
         )
-        
+
         self.conv2 = nn.Conv2d(
             features, features, kernel_size=3, stride=1, padding=1, bias=True, groups=self.groups
         )
@@ -357,12 +357,12 @@ class ResidualConvUnit_custom(nn.Module):
         Returns:
             tensor: output
         """
-        
+
         out = self.activation(x)
         out = self.conv1(out)
         if self.bn==True:
             out = self.bn1(out)
-       
+
         out = self.activation(out)
         out = self.conv2(out)
         if self.bn==True:
@@ -397,12 +397,12 @@ class FeatureFusionBlock_custom(nn.Module):
         out_features = features
         if self.expand==True:
             out_features = features//2
-        
+
         self.out_conv = nn.Conv2d(features, out_features, kernel_size=1, stride=1, padding=0, bias=True, groups=1)
 
         self.resConfUnit1 = ResidualConvUnit_custom(features, activation, bn)
         self.resConfUnit2 = ResidualConvUnit_custom(features, activation, bn)
-        
+
         self.skip_add = nn.quantized.FloatFunctional()
 
         self.size=size
