@@ -5,8 +5,8 @@ https://github.com/thomasjpfan/pytorch_refinenet/blob/master/pytorch_refinenet/r
 import torch
 import torch.nn as nn
 
-from .base_model import BaseModel
-from .blocks import FeatureFusionBlock, FeatureFusionBlock_custom, Interpolate, _make_encoder
+from midas.base_model import BaseModel
+from midas.blocks import FeatureFusionBlock, FeatureFusionBlock_custom, Interpolate, _make_encoder
 
 
 class MidasNet_small(BaseModel):
@@ -27,7 +27,7 @@ class MidasNet_small(BaseModel):
         super(MidasNet_small, self).__init__()
 
         use_pretrained = False if path else True
-                
+
         self.channels_last = channels_last
         self.blocks = blocks
         self.backbone = backbone
@@ -47,15 +47,15 @@ class MidasNet_small(BaseModel):
             features4=features*8
 
         self.pretrained, self.scratch = _make_encoder(self.backbone, features, use_pretrained, groups=self.groups, expand=self.expand, exportable=exportable)
-  
-        self.scratch.activation = nn.ReLU(False)    
+
+        self.scratch.activation = nn.ReLU(False)
 
         self.scratch.refinenet4 = FeatureFusionBlock_custom(features4, self.scratch.activation, deconv=False, bn=False, expand=self.expand, align_corners=align_corners)
         self.scratch.refinenet3 = FeatureFusionBlock_custom(features3, self.scratch.activation, deconv=False, bn=False, expand=self.expand, align_corners=align_corners)
         self.scratch.refinenet2 = FeatureFusionBlock_custom(features2, self.scratch.activation, deconv=False, bn=False, expand=self.expand, align_corners=align_corners)
         self.scratch.refinenet1 = FeatureFusionBlock_custom(features1, self.scratch.activation, deconv=False, bn=False, align_corners=align_corners)
 
-        
+
         self.scratch.output_conv = nn.Sequential(
             nn.Conv2d(features, features//2, kernel_size=3, stride=1, padding=1, groups=self.groups),
             Interpolate(scale_factor=2, mode="bilinear"),
@@ -65,7 +65,7 @@ class MidasNet_small(BaseModel):
             nn.ReLU(True) if non_negative else nn.Identity(),
             nn.Identity(),
         )
-        
+
         if path:
             self.load(path)
 
@@ -88,7 +88,7 @@ class MidasNet_small(BaseModel):
         layer_2 = self.pretrained.layer2(layer_1)
         layer_3 = self.pretrained.layer3(layer_2)
         layer_4 = self.pretrained.layer4(layer_3)
-        
+
         layer_1_rn = self.scratch.layer1_rn(layer_1)
         layer_2_rn = self.scratch.layer2_rn(layer_2)
         layer_3_rn = self.scratch.layer3_rn(layer_3)
@@ -99,7 +99,7 @@ class MidasNet_small(BaseModel):
         path_3 = self.scratch.refinenet3(path_4, layer_3_rn)
         path_2 = self.scratch.refinenet2(path_3, layer_2_rn)
         path_1 = self.scratch.refinenet1(path_2, layer_1_rn)
-        
+
         out = self.scratch.output_conv(path_1)
 
         return torch.squeeze(out, dim=1)

@@ -1,6 +1,6 @@
 import timm
 
-from .swin_common import _make_swin_backbone
+from midas.backbones.swin_common import _make_swin_backbone
 
 
 def _make_pretrained_swin2l24_384(pretrained, hooks=None):

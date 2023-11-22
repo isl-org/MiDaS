@@ -5,8 +5,8 @@ https://github.com/thomasjpfan/pytorch_refinenet/blob/master/pytorch_refinenet/r
 import torch
 import torch.nn as nn
 
-from .base_model import BaseModel
-from .blocks import FeatureFusionBlock, Interpolate, _make_encoder
+from midas.base_model import BaseModel
+from midas.blocks import FeatureFusionBlock, Interpolate, _make_encoder
 
 
 class MidasNet(BaseModel):

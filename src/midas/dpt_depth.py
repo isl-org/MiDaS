@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 
-from .base_model import BaseModel
-from .blocks import (
+from midas.base_model import BaseModel
+from midas.blocks import (
     FeatureFusionBlock_custom,
     Interpolate,
     _make_encoder,
@@ -11,7 +11,7 @@ from .blocks import (
     forward_levit,
     forward_vit,
 )
-from .backbones.levit import stem_b4_transpose
+from midas.backbones.levit import stem_b4_transpose
 from timm.models.layers import get_act_layer
 
 
@@ -43,7 +43,7 @@ class DPT(BaseModel):
 
         self.channels_last = channels_last
 
-        # For the Swin, Swin 2, LeViT and Next-ViT Transformers, the hierarchical architectures prevent setting the 
+        # For the Swin, Swin 2, LeViT and Next-ViT Transformers, the hierarchical architectures prevent setting the
         # hooks freely. Instead, the hooks have to be chosen according to the ranges specified in the comments.
         hooks = {
             "beitl16_512": [5, 11, 17, 23],
@@ -89,7 +89,7 @@ class DPT(BaseModel):
         elif "swin" in backbone:
             self.forward_transformer = forward_swin
         elif "next_vit" in backbone:
-            from .backbones.next_vit import forward_next_vit
+            from midas.backbones.next_vit import forward_next_vit
             self.forward_transformer = forward_next_vit
         elif "levit" in backbone:
             self.forward_transformer = forward_levit
