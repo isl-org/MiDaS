@@ -5,7 +5,7 @@ import types
 import math
 import torch.nn.functional as F
 
-from .utils import (activations, forward_adapted_unflatten, get_activation, get_readout_oper,
+from midas.backbones.utils import (activations, forward_adapted_unflatten, get_activation, get_readout_oper,
                     make_backbone_default, Transpose)
 
 

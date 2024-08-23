@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-from .utils import activations, forward_default, get_activation, Transpose
+from midas.backbones.utils import activations, forward_default, get_activation, Transpose
 
 
 def forward_swin(pretrained, x):
