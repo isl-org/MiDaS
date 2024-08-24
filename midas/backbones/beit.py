@@ -44,7 +44,7 @@ def _get_rel_pos_bias(self, window_size):
     old_sub_table = old_relative_position_bias_table[:old_num_relative_distance - 3]
 
     old_sub_table = old_sub_table.reshape(1, old_width, old_height, -1).permute(0, 3, 1, 2)
-    new_sub_table = F.interpolate(old_sub_table, size=(new_height, new_width), mode="bilinear")
+    new_sub_table = F.interpolate(old_sub_table, size=(int(new_height), int(new_width)), mode="bilinear")
     new_sub_table = new_sub_table.permute(0, 2, 3, 1).reshape(new_num_relative_distance - 3, -1)
 
     new_relative_position_bias_table = torch.cat(
@@ -95,6 +95,8 @@ def block_forward(self, x, resolution, shared_rel_pos_bias: Optional[torch.Tenso
     """
     Modification of timm.models.beit.py: Block.forward to support arbitrary window sizes.
     """
+    if hasattr(self, 'drop_path1') and not hasattr(self, 'drop_path'):
+        self.drop_path = self.drop_path1
     if self.gamma_1 is None:
         x = x + self.drop_path(self.attn(self.norm1(x), resolution, shared_rel_pos_bias=shared_rel_pos_bias))
         x = x + self.drop_path(self.mlp(self.norm2(x)))
