@@ -100,8 +100,8 @@ def forward_adapted_unflatten(pretrained, x, function_name="forward_features"):
             2,
             torch.Size(
                 [
-                    h // pretrained.model.patch_size[1],
-                    w // pretrained.model.patch_size[0],
+                    h.item() // pretrained.model.patch_size[1],
+                    w.item() // pretrained.model.patch_size[0],
                 ]
             ),
         )
