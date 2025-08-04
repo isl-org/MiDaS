@@ -103,7 +103,7 @@ def create_side_by_side(image, depth, grayscale):
 
 
 def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", optimize=False, side=False, height=None,
-        square=False, grayscale=False):
+        square=False, grayscale=False, camera_source=0, save_npy=False):
     """Run MonoDepthNN to compute depth maps.
 
     Args:
@@ -116,6 +116,11 @@ def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", op
         height (int): inference encoder image height
         square (bool): resize to a square resolution?
         grayscale (bool): use a grayscale colormap?
+        camera_source: camera device index or URL used for video capture
+        save_npy (bool): save predicted depth arrays as .npy files
+
+    Returns:
+        list[np.ndarray]: all predictions in order of processing
     """
     print("Initialize")
 
@@ -137,6 +142,8 @@ def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", op
         os.makedirs(output_path, exist_ok=True)
 
     print("Start processing")
+
+    predictions = []
 
     if input_path is not None:
         if output_path is None:
@@ -166,11 +173,16 @@ def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", op
                     content = create_side_by_side(original_image_bgr*255, prediction, grayscale)
                     cv2.imwrite(filename + ".png", content)
                 utils.write_pfm(filename + ".pfm", prediction.astype(np.float32))
+                if save_npy:
+                    np.save(filename + ".npy", prediction)
+
+            predictions.append(prediction)
 
     else:
         with torch.no_grad():
             fps = 1
-            video = VideoStream(0).start()
+            src = int(camera_source) if str(camera_source).isdigit() else camera_source
+            video = VideoStream(src).start()
             time_start = time.time()
             frame_index = 0
             while True:
@@ -189,6 +201,10 @@ def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", op
                     if output_path is not None:
                         filename = os.path.join(output_path, 'Camera' + '-' + model_type + '_' + str(frame_index))
                         cv2.imwrite(filename + ".png", content)
+                        if save_npy:
+                            np.save(filename + ".npy", prediction)
+
+                    predictions.append(prediction)
 
                     alpha = 0.1
                     if time.time()-time_start > 0:
@@ -200,9 +216,12 @@ def run(input_path, output_path, model_path, model_type="dpt_beit_large_512", op
                         break
 
                     frame_index += 1
+            video.stop()
         print()
 
     print("Finished")
+
+    return predictions
 
 
 if __name__ == "__main__":
@@ -262,6 +281,16 @@ if __name__ == "__main__":
                              'colormap.'
                         )
 
+    parser.add_argument('--camera_source',
+                        default=0,
+                        help='Camera device index or video/stream URL to read frames from.'
+                        )
+
+    parser.add_argument('--save_npy',
+                        action='store_true',
+                        help='Save predicted depth arrays as .npy files.'
+                        )
+
     args = parser.parse_args()
 
 
@@ -273,5 +302,16 @@ if __name__ == "__main__":
     torch.backends.cudnn.benchmark = True
 
     # compute depth maps
-    run(args.input_path, args.output_path, args.model_weights, args.model_type, args.optimize, args.side, args.height,
-        args.square, args.grayscale)
+    run(
+        args.input_path,
+        args.output_path,
+        args.model_weights,
+        args.model_type,
+        args.optimize,
+        args.side,
+        args.height,
+        args.square,
+        args.grayscale,
+        args.camera_source,
+        args.save_npy,
+    )

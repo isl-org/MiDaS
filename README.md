@@ -71,17 +71,20 @@ pip install openvino
    [midas_v21_384](#model_type), [midas_v21_small_256](#model_type), [openvino_midas_v21_small_256](#model_type).
  
 3) The resulting depth maps are written to the `output` folder.
+   When using `--save_npy`, the raw depth arrays are stored alongside the images for
+   further processing. The `run()` function also returns these arrays when used as a module.
 
 #### optional
 
 1) By default, the inference resizes the height of input images to the size of a model to fit into the encoder. This
    size is given by the numbers in the model names of the [accuracy table](#accuracy). Some models do not only support a single
-   inference height but a range of different heights. Feel free to explore different heights by appending the extra 
+   inference height but a range of different heights. Feel free to explore different heights by appending the extra
    command line argument `--height`. Unsupported height values will throw an error. Note that using this argument may
    decrease the model accuracy.
-2) By default, the inference keeps the aspect ratio of input images when feeding them into the encoder if this is
+2) To store the predicted depth maps as NumPy arrays alongside the images, set the flag `--save_npy`.
+3) By default, the inference keeps the aspect ratio of input images when feeding them into the encoder if this is
    supported by a model (all models except for Swin, Swin2, LeViT). In order to resize to a square resolution,
-   disregarding the aspect ratio while preserving the height, use the command line argument `--square`. 
+   disregarding the aspect ratio while preserving the height, use the command line argument `--square`.
 
 #### via Camera
 
@@ -92,8 +95,29 @@ pip install openvino
    python run.py --model_type <model_type> --side
    ```
 
-   The argument `--side` is optional and causes both the input RGB image and the output depth map to be shown 
+   The argument `--side` is optional and causes both the input RGB image and the output depth map to be shown
    side-by-side for comparison.
+
+   A different camera can be specified via `--camera_source`. This parameter accepts a device index or a URL.
+   For example, to use a Wi‑Fi camera stream:
+
+   ```shell
+   python run.py --model_type <model_type> --camera_source http://<ip>:<port>/stream
+   ```
+
+   Use `--save_npy` to additionally store the raw depth predictions as NumPy arrays.
+
+#### Streaming depth arrays
+
+The `stream_depth.py` script forwards each predicted depth map to another
+process using HTTP POST. Simply provide the destination URL:
+
+```shell
+python stream_depth.py --server_url http://localhost:8000/depth
+```
+
+Use `--camera_source` to select a different camera or stream and `--model_type`
+to choose another model.
 
 #### via Docker
 
